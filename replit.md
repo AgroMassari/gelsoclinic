@@ -41,6 +41,7 @@ Catálogo web premium de medicina estética integral para la Dra. María Pía Ge
 ## User preferences
 
 - The user requested a premium black/champagne-gold visual identity based on the supplied Gelso references.
+- The brand slogan is: “La belleza de lo sutil.”
 - Public-facing copy is in Spanish and should preserve the supplied treatment names and medical disclaimers.
 
 ## Gotchas

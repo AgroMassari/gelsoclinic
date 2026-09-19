@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
-import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, Menu, Plus, Sparkles, X } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, Menu, Sparkles, X } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -11,6 +11,7 @@ const queryClient = new QueryClient();
 const logoPath = '/assets/gelso-logo.jpg';
 const portraitPath = '/assets/dra-maria-pia.jpg';
 const darkReferencePath = '/assets/clinic-dark-reference.jpg';
+const sloganReferencePath = '/assets/gelso-slogan-reference.jpg';
 
 const appointmentUrl = 'https://wa.me/543572665637?text=Hola%20Dra.%20Mar%C3%ADa%20P%C3%ADa%20Gelso%2C%20quisiera%20solicitar%20un%20turno.';
 const phoneUrl = 'tel:+543572665637';
@@ -79,9 +80,9 @@ function Header() {
 }
 
 const pillars = [
-  { number: '01', title: 'Ciencia', copy: 'Decisiones médicas basadas en evaluación y criterio.' },
-  { number: '02', title: 'Armonía', copy: 'Resultados que respetan tu identidad y tus tiempos.' },
-  { number: '03', title: 'Cuidado', copy: 'Una atención cercana, precisa y completamente personal.' },
+  { number: '01', title: 'Precisión', copy: 'Cada decisión nace de una evaluación médica atenta y rigurosa.' },
+  { number: '02', title: 'Armonía', copy: 'Tratamientos que respetan tus rasgos, tu identidad y tus tiempos.' },
+  { number: '03', title: 'Naturalidad', copy: 'Resultados sutiles para que te reconozcas en tu mejor versión.' },
 ];
 
 const treatments = [
@@ -208,9 +209,9 @@ function Hero() {
       </div>
       <div className="relative mx-auto flex min-h-[760px] max-w-[1320px] flex-col justify-end px-5 pb-16 pt-36 sm:px-8 lg:min-h-[840px] lg:justify-center lg:px-12 lg:pb-0">
         <div className="max-w-[640px]">
-          <div className="mb-7 flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-12 bg-[#cdb38b]" /><span className="eyebrow">Pilar · Río Segundo · Córdoba</span></div>
-          <h1 className="max-w-[600px] font-display text-[4.25rem] font-medium leading-[.84] tracking-[-.03em] text-[#f5eee4] sm:text-[6rem] lg:text-[7.5rem]" data-testid="text-hero-title">Tu mejor<br /><em className="text-[#cdb38b]">versión,</em><br />con criterio.</h1>
-          <p className="mt-8 max-w-[400px] text-[.86rem] leading-7 text-[#d9cfc3] sm:text-[.95rem]">Medicina estética integral con una mirada precisa, natural y profundamente personal.</p>
+          <div className="mb-7 flex items-center gap-3" data-testid="text-hero-eyebrow"><span className="h-px w-12 bg-[#cdb38b]" /><span className="eyebrow">Medicina estética integral</span></div>
+          <h1 className="max-w-[600px] font-display text-[4.4rem] font-medium leading-[.84] tracking-[-.03em] text-[#f5eee4] sm:text-[6.4rem] lg:text-[7.8rem]" data-testid="text-hero-title">La belleza<br /><em className="text-[#cdb38b]">de lo sutil.</em></h1>
+          <p className="mt-8 max-w-[420px] text-[.86rem] leading-7 text-[#d9cfc3] sm:text-[.95rem]">Precisión, armonía y naturalidad para acompañar tu belleza con criterio médico.</p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a href={appointmentUrl} target="_blank" rel="noreferrer" className="group inline-flex items-center bg-[#cdb38b] px-6 py-4 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#171411] transition hover:bg-[#f0d9ae]" data-testid="link-hero-appointment">Solicitar un turno <ArrowUpRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a>
             <a href="#tratamientos" className="inline-flex items-center px-3 py-4 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#e3d6c8] transition hover:text-[#cdb38b]" data-testid="link-hero-treatments">Conocer tratamientos <ArrowDown className="ml-3 h-4 w-4" /></a>
@@ -269,31 +270,56 @@ function About() {
 
 function TreatmentAccordion() {
   const [open, setOpen] = useState(0);
+  const activeTreatment = treatments[open];
   return (
-    <div className="mt-12 border-t border-[#cdb38b]/30">
-      {treatments.map((treatment, index) => {
-        const expanded = open === index;
-        return (
-          <div key={treatment.number} className="service-row border-b border-[#cdb38b]/20" aria-expanded={expanded}>
-            <button type="button" className="flex w-full items-center gap-4 py-6 text-left sm:py-7" onClick={() => setOpen(expanded ? -1 : index)} data-testid={`button-treatment-${treatment.number}`}>
-              <span className="w-8 font-display text-xl text-[#cdb38b]">{treatment.number}</span>
-              <span className="flex-1 font-display text-[1.65rem] leading-none text-[#f5eee4] sm:text-[2.1rem]">{treatment.title}</span>
-              <span className="service-plus flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#cdb38b]/60 text-[#cdb38b]"><Plus className="h-4 w-4" /></span>
+    <div className="mt-12 grid gap-4 lg:grid-cols-[.78fr_1.22fr] lg:gap-5">
+      <div className="space-y-2">
+        {treatments.map((treatment, index) => {
+          const expanded = open === index;
+          return (
+            <button
+              type="button"
+              key={treatment.number}
+              className={`treatment-card group flex w-full items-center gap-4 border px-4 py-4 text-left transition sm:px-5 sm:py-5 ${expanded ? 'treatment-card-active' : ''}`}
+              onClick={() => setOpen(index)}
+              aria-pressed={expanded}
+              data-testid={`button-treatment-${treatment.number}`}
+            >
+              <span className="font-display text-lg text-[#cdb38b]">{treatment.number}</span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-display text-[1.25rem] leading-[.95] text-[#f5eee4] sm:text-[1.5rem]">{treatment.title}</span>
+                <span className="mt-2 block text-[.56rem] font-bold uppercase tracking-[.16em] text-[#9e9185]">{treatment.services.length} {treatment.services.length === 1 ? 'protocolo' : 'protocolos'}</span>
+              </span>
+              <ChevronDown className={`h-4 w-4 shrink-0 text-[#cdb38b] transition-transform ${expanded ? 'rotate-180' : 'group-hover:translate-y-1'}`} />
             </button>
-            {expanded && (
-              <div className="space-y-8 pb-8 pl-12 pr-2 sm:pl-12">
-                {treatment.services.map((service) => (
-                  <article key={service.title} className="max-w-[720px] border-l border-[#cdb38b]/45 pl-5">
-                    <h3 className="font-display text-[1.35rem] leading-tight text-[#f5eee4] sm:text-[1.6rem]">{service.title}</h3>
-                    <p className="mt-3 text-[.78rem] leading-6 text-[#c7b9ac]">{service.description}</p>
-                    {service.note && <p className="mt-3 text-[.72rem] leading-6 text-[#998d82]">{service.note}</p>}
-                  </article>
-                ))}
-              </div>
-            )}
+          );
+        })}
+      </div>
+
+      <div className="treatment-detail-panel min-h-[420px] border border-[#cdb38b]/30 bg-[#211b18] p-5 sm:p-7 lg:p-8" aria-live="polite">
+        <div className="flex items-start justify-between gap-5 border-b border-[#cdb38b]/25 pb-5">
+          <div>
+            <span className="eyebrow">Área de tratamiento</span>
+            <h3 className="mt-3 max-w-[430px] font-display text-[2rem] leading-[.93] text-[#f5eee4] sm:text-[2.6rem]">{activeTreatment.title}</h3>
           </div>
-        );
-      })}
+          <span className="font-display text-4xl text-[#cdb38b]/60">{activeTreatment.number}</span>
+        </div>
+        <div className="mt-6 space-y-7">
+          {activeTreatment.services.map((service, serviceIndex) => (
+            <article key={service.title} className="service-detail">
+              <div className="flex gap-3">
+                <span className="pt-1 text-[.58rem] font-bold tracking-[.16em] text-[#cdb38b]">0{serviceIndex + 1}</span>
+                <div>
+                  <h4 className="font-display text-[1.35rem] leading-tight text-[#f5eee4] sm:text-[1.55rem]">{service.title}</h4>
+                  <p className="mt-2 text-[.76rem] leading-6 text-[#c7b9ac]">{service.description}</p>
+                  {service.note && <p className="mt-2 text-[.7rem] leading-6 text-[#998d82]">{service.note}</p>}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <a href={appointmentUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center border-b border-[#cdb38b] pb-2 text-[.6rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:text-[#f0d9ae]" data-testid="link-treatment-appointment">Consultar por este protocolo <ArrowUpRight className="ml-3 h-3.5 w-3.5" /></a>
+      </div>
     </div>
   );
 }
@@ -302,12 +328,22 @@ function Treatments() {
   return (
     <section id="tratamientos" className="bg-[#171411]">
       <div className="mx-auto max-w-[1320px] px-5 py-24 sm:px-8 md:py-32 lg:px-12">
-        <Reveal className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
-          <div>
-            <span className="eyebrow">Tratamientos</span>
-            <h2 className="mt-6 max-w-[390px] font-display text-[4rem] leading-[.87] tracking-[-.025em] text-[#f5eee4] sm:text-[5.4rem]" data-testid="text-treatments-title">Cuidar lo que ya <em className="text-[#cdb38b]">es tuyo.</em></h2>
+        <Reveal>
+          <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-end lg:gap-24">
+            <div>
+              <span className="eyebrow">Tratamientos</span>
+              <h2 className="mt-6 max-w-[450px] font-display text-[4rem] leading-[.87] tracking-[-.025em] text-[#f5eee4] sm:text-[5.4rem]" data-testid="text-treatments-title">Tu belleza,<br /><em className="text-[#cdb38b]">en detalle.</em></h2>
+            </div>
+            <div className="max-w-[570px] lg:pb-2">
+              <p className="text-[.86rem] leading-7 text-[#b9aca1]">Cada protocolo se elige con criterio médico y se adapta a lo que tu piel, tu rostro y tu historia necesitan. Conocé las áreas de trabajo y encontrá el punto de partida para tu consulta.</p>
+              <div className="mt-6 flex items-center gap-4 text-[.58rem] font-bold uppercase tracking-[.2em] text-[#cdb38b]"><span className="h-px w-10 bg-[#cdb38b]" /> Precisión · Armonía · Naturalidad</div>
+            </div>
           </div>
-          <div className="flex max-w-[590px] flex-col justify-end lg:pb-2"><p className="text-[.86rem] leading-7 text-[#b9aca1]">Un abordaje integral para acompañar tu belleza con criterio médico, tecnología y sensibilidad. Explorá cada área para conocer el enfoque.</p><TreatmentAccordion /></div>
+          <TreatmentAccordion />
+          <div className="mt-14 grid gap-5 border-t border-[#cdb38b]/20 pt-5 sm:grid-cols-[.9fr_1.1fr] sm:items-center">
+            <span className="text-[.6rem] font-bold uppercase tracking-[.2em] text-[#8f8175]">Una estética que se ve y se siente tuya</span>
+            <img src={sloganReferencePath} alt="Gelso Clinic · La belleza de lo sutil" className="h-24 w-full object-cover object-[50%_34%] opacity-75 grayscale-[.12] sm:h-32" loading="lazy" data-testid="img-slogan-reference" />
+          </div>
         </Reveal>
       </div>
     </section>

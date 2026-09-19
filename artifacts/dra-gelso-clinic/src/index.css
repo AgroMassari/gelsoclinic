@@ -158,6 +158,31 @@
 .service-plus { transition: transform .3s ease, background-color .3s ease; }
 .service-row[aria-expanded='true'] .service-plus { transform: rotate(45deg); background: #cdb38b; color: #171310; }
 
+.treatment-card {
+  border-color: rgba(205, 179, 139, .22);
+  background: rgba(255, 255, 255, .015);
+}
+.treatment-card:hover {
+  border-color: rgba(205, 179, 139, .58);
+  background: rgba(205, 179, 139, .06);
+  transform: translateX(4px);
+}
+.treatment-card-active {
+  border-color: #cdb38b;
+  background: linear-gradient(105deg, rgba(205, 179, 139, .16), rgba(205, 179, 139, .045));
+  box-shadow: inset 3px 0 0 #cdb38b;
+}
+.treatment-detail-panel {
+  background-image: linear-gradient(135deg, rgba(205, 179, 139, .035), transparent 34%);
+}
+.service-detail + .service-detail {
+  border-top: 1px solid rgba(205, 179, 139, .14);
+  padding-top: 1.5rem;
+}
+@media (max-width: 1023px) {
+  .treatment-card:hover { transform: none; }
+}
+
 .hero-image { animation: heroReveal 1.5s cubic-bezier(.22,1,.36,1) both; }
 @keyframes heroReveal {
   from { opacity: 0; transform: scale(1.035); }
