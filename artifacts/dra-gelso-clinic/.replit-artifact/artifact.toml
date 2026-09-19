@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Dra. Gelso · Medicina Estética"
+description = "Catálogo web premium para la Dra. María Pía Gelso, con tratamientos de medicina estética integral, información de contacto y agenda de turnos en Pilar, Río Segundo, Córdoba."
+version = "1.0.0"
+id = "artifacts/dra-gelso-clinic"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24998
+
+[services.development]
+run = "pnpm --filter @workspace/dra-gelso-clinic run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dra-gelso-clinic", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dra-gelso-clinic/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24998"
+BASE_PATH = "/"

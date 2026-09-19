@@ -1,6 +1,6 @@
-# [Project name]
+# Dra. Gelso · Medicina Estética
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Catálogo web premium de medicina estética integral para la Dra. María Pía Gelso, con tratamientos, ubicación y agenda de turnos.
 
 ## Run & Operate
 
@@ -22,23 +22,30 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/dra-gelso-clinic/src/App.tsx` — landing page, navigation, treatment catalog, contact links.
+- `artifacts/dra-gelso-clinic/src/index.css` — visual language, typography, responsive behavior, motion.
+- `artifacts/dra-gelso-clinic/public/assets/` — supplied Gelso logo, portrait and reference images.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The first version is a frontend-only presentation site; appointment requests go directly to WhatsApp, phone, and Instagram.
+- Treatment content is grouped into expandable categories to keep the landing page readable while preserving the full service catalog.
+- The visual system uses an editorial serif/sans pairing, near-black espresso surfaces, champagne gold, and warm cream sections to match the supplied references.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Single-page presentation of Dra. Gelso's medical aesthetic practice.
+- Responsive treatment catalog with descriptions for every requested service.
+- Direct appointment actions for WhatsApp (`3572 665637`), phone, and Instagram (`@Dra.gelso`).
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- The user requested a premium black/champagne-gold visual identity based on the supplied Gelso references.
+- Public-facing copy is in Spanish and should preserve the supplied treatment names and medical disclaimers.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The artifact uses the root preview path `/`; keep internal links hash-based so the single-page navigation remains compatible with the current router.
 
 ## Pointers
 
