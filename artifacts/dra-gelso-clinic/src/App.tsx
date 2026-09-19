@@ -10,8 +10,8 @@ import NotFound from '@/pages/not-found';
 const queryClient = new QueryClient();
 const logoPath = '/assets/gelso-logo.jpg';
 const portraitPath = '/assets/dra-maria-pia.jpg';
-const darkReferencePath = '/assets/clinic-dark-reference.jpg';
-const sloganReferencePath = '/assets/gelso-slogan-reference.jpg';
+const methodReferencePath = '/assets/gelso-method-portrait-bw.jpg';
+const clinicReferencePath = '/assets/gelso-clinic-interior.jpg';
 
 const appointmentUrl = 'https://wa.me/543572665637?text=Hola%20Dra.%20Mar%C3%ADa%20P%C3%ADa%20Gelso%2C%20quisiera%20solicitar%20un%20turno.';
 const phoneUrl = 'tel:+543572665637';
@@ -342,7 +342,7 @@ function Treatments() {
           <TreatmentAccordion />
           <div className="mt-14 grid gap-5 border-t border-[#cdb38b]/20 pt-5 sm:grid-cols-[.9fr_1.1fr] sm:items-center">
             <span className="text-[.6rem] font-bold uppercase tracking-[.2em] text-[#8f8175]">Una estética que se ve y se siente tuya</span>
-            <img src={sloganReferencePath} alt="Gelso Clinic · La belleza de lo sutil" className="h-24 w-full object-cover object-[50%_34%] opacity-75 grayscale-[.12] sm:h-32" loading="lazy" data-testid="img-slogan-reference" />
+            <img src={clinicReferencePath} alt="Interior de Gelso Clinic" className="h-24 w-full object-cover object-center opacity-85 sm:h-32" loading="lazy" data-testid="img-clinic-reference" />
           </div>
         </Reveal>
       </div>
@@ -355,7 +355,7 @@ function Method() {
     <section id="metodo" className="bg-[#28201b]">
       <div className="mx-auto grid max-w-[1320px] lg:grid-cols-[1.02fr_.98fr]">
         <Reveal className="relative min-h-[520px] overflow-hidden lg:min-h-[650px]">
-          <img src={darkReferencePath} alt="Interior y lenguaje visual de Gelso" className="absolute inset-0 h-full w-full object-cover opacity-60 mix-blend-luminosity" data-testid="img-method-reference" />
+          <img src={methodReferencePath} alt="Dra. María Pía Gelso en blanco y negro" className="absolute inset-0 h-full w-full object-cover object-[50%_24%] opacity-80" data-testid="img-method-reference" />
           <div className="absolute inset-0 bg-gradient-to-tr from-[#28201b] via-[#28201b]/20 to-transparent" />
           <div className="absolute bottom-8 left-5 right-5 flex items-end justify-between sm:left-8 sm:right-8 lg:left-12 lg:right-12"><span className="eyebrow">El método Gelso</span><span className="font-display text-[5rem] leading-none text-[#cdb38b]/50">03</span></div>
         </Reveal>
