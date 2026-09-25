@@ -383,24 +383,24 @@ function About() {
         </div>
 
         {/* Text col */}
-        <div className="about-text-block order-1 flex flex-col justify-center lg:order-2">
-          <span className="eyebrow !text-[#94734e] about-text-block">Una mirada personal</span>
-          <h2 className="about-text-block mt-6 max-w-[630px] font-display text-[3.7rem] leading-[.9] tracking-[-.025em] sm:text-[5.2rem]"
+        <div className="about-text-block order-1 flex flex-col justify-center max-lg:pr-[4.75rem] lg:order-2">
+          <span className="eyebrow !text-[#94734e] about-text-block">Criterio médico · MP 47298</span>
+          <h2 className="about-text-block mt-6 max-w-[630px] font-display text-[clamp(2.65rem,10.5vw,5.2rem)] leading-[.9] tracking-[-.025em]"
             data-testid="text-about-title">
-            La estética<br /><em>también es</em><br />escucha.
+            Tu rostro,<br /><em>tu historia,</em><br />tu plan.
           </h2>
           <div className="about-text-block mt-8 grid max-w-[590px] gap-5 border-t border-[#9d7b50]/35 pt-7 sm:grid-cols-[1fr_1fr]">
             <p className="text-[.83rem] leading-7 text-[#574d46]">
-              Soy la Dra. María Pía Gelso, médica dedicada a la Medicina Estética Integral. Creo en una estética que acompaña, no que transforma quién sos.
+              Soy la Dra. María Pía Gelso, médica especializada en Medicina Estética Integral. Trabajo con precisión clínica para realzar lo que ya te define, sin excesos ni resultados artificiales.
             </p>
             <p className="text-[.83rem] leading-7 text-[#574d46]">
-              Cada tratamiento empieza con una conversación y una evaluación. El objetivo es que te reconozcas en el espejo, con resultados naturales y armónicos.
+              Cada consulta incluye evaluación integral y un plan a medida. El objetivo: que te veas fresca, armónica y reconocible, con resultados progresivos y naturales.
             </p>
           </div>
           <a href={appointmentUrl} target="_blank" rel="noreferrer"
             className="about-text-block mt-9 inline-flex w-fit items-center gap-3 border-b border-[#94734e] pb-3 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#4a3b2e] transition hover:border-[#211b18] hover:text-[#211b18]"
             data-testid="link-about-appointment">
-            Conocé mi enfoque <ArrowUpRight className="h-4 w-4" />
+            Reservar evaluación <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
       </div>
@@ -591,10 +591,12 @@ function FaqSection() {
 /* ─── Contact & Locations ────────────────────────── */
 function Contact() {
   return (
-    <section id="contacto" className="relative overflow-hidden bg-[#dfd2c4] text-[#211b18]" aria-labelledby="locations-heading">
-      <div className="absolute -right-20 -top-28 h-96 w-96 rounded-full border border-[#9d7b50]/20 sm:-right-10 sm:-top-48 sm:h-[620px] sm:w-[620px]" aria-hidden="true" />
-      <div className="absolute -right-4 -top-12 h-64 w-64 rounded-full border border-[#9d7b50]/15 sm:right-16 sm:-top-24 sm:h-[420px] sm:w-[420px]" aria-hidden="true" />
-      <div className="absolute -right-32 top-1/2 h-[800px] w-[800px] -translate-y-1/2 rounded-full border border-[#9d7b50]/08" aria-hidden="true" />
+    <section id="contacto" className="relative overflow-x-clip bg-[#dfd2c4] text-[#211b18]" aria-labelledby="locations-heading">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -right-20 -top-28 h-96 w-96 rounded-full border border-[#9d7b50]/20 sm:-right-10 sm:-top-48 sm:h-[620px] sm:w-[620px]" />
+        <div className="absolute -right-4 -top-12 h-64 w-64 rounded-full border border-[#9d7b50]/15 sm:right-16 sm:-top-24 sm:h-[420px] sm:w-[420px]" />
+        <div className="absolute -right-16 top-1/2 hidden h-[min(800px,140vw)] w-[min(800px,140vw)] -translate-y-1/2 rounded-full border border-[#9d7b50]/08 sm:block" />
+      </div>
 
       <div id="ubicaciones" className="relative mx-auto max-w-[1320px] scroll-mt-28 px-5 py-24 sm:px-8 md:py-32 lg:px-12">
         <header className="contact-intro mb-12 max-w-[720px] lg:mb-14">
@@ -768,7 +770,7 @@ function Home() {
 
       {/* Floating CTA */}
       <a href={appointmentUrl} target="_blank" rel="noreferrer"
-        className="floating-cta btn-magnetic fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full px-5 py-3.5 text-[.58rem] font-bold uppercase tracking-[.12em] text-[#171411] shadow-[0_8px_30px_rgba(205,179,139,.35)] transition-shadow hover:shadow-[0_8px_40px_rgba(205,179,139,.55)] sm:bottom-8 sm:right-8"
+        className="floating-cta btn-magnetic fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-40 flex max-w-[calc(100vw-2rem)] items-center gap-2.5 rounded-full px-5 py-3.5 text-[.58rem] font-bold uppercase tracking-[.12em] text-[#171411] shadow-[0_8px_30px_rgba(205,179,139,.35)] transition-shadow hover:shadow-[0_8px_40px_rgba(205,179,139,.55)] sm:bottom-8 sm:right-8"
         data-testid="link-floating-appointment">
         <WhatsAppIcon className="h-4 w-4 shrink-0" />
         <span className="hidden sm:inline">Solicitar turno</span>
