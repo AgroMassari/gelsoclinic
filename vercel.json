@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm --filter @workspace/dra-gelso-clinic run build",
+  "outputDirectory": "artifacts/dra-gelso-clinic/dist/public",
+  "framework": null,
+  "build": {
+    "env": {
+      "PORT": "4173",
+      "BASE_PATH": "/"
+    }
+  }
+}
