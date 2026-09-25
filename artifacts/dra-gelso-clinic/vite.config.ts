@@ -4,6 +4,20 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 import runtimeErrorOverlay from '@replit/vite-plugin-runtime-error-modal';
+import { structuredDataJson } from './src/lib/site-seo';
+
+function injectStructuredData() {
+  const payload = structuredDataJson().replace(/</g, '\\u003c');
+  return {
+    name: 'inject-structured-data',
+    transformIndexHtml(html: string) {
+      return html.replace(
+        '<!-- STRUCTURED_DATA -->',
+        `<script id="structured-data" type="application/ld+json">${payload}</script>`,
+      );
+    },
+  };
+}
 
 const rawPort = process.env.PORT;
 
@@ -32,6 +46,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    injectStructuredData(),
     runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== 'production' &&
     process.env.REPL_ID !== undefined

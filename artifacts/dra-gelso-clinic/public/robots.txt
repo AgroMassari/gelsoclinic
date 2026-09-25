@@ -1,2 +1,15 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
+
+Disallow: /src/
+Disallow: /.vite/
+Disallow: /node_modules/
+Disallow: /*.map$
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://gelsoclinic.com/sitemap.xml

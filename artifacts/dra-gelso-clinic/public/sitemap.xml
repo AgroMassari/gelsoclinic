@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://gelsoclinic.com/</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://gelsoclinic.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gelsoclinic.com/"/>
+    <image:image>
+      <image:loc>https://gelsoclinic.com/assets/gelso-slogan-reference.jpg</image:loc>
+      <image:title>Dra. Gelso María Pía — Medicina Estética Integral Córdoba</image:title>
+      <image:caption>Dra. María Pía Gelso (MP 47298) — medicina estética integral en Córdoba, Pilar y Río Segundo.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gelsoclinic.com/assets/dra-gelso-hero.png</image:loc>
+      <image:title>Dra. María Pía Gelso — Médica estética Córdoba</image:title>
+      <image:caption>Dra. María Pía Gelso, especialista en medicina estética integral en Córdoba.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gelsoclinic.com/assets/gelso-clinic-interior.jpg</image:loc>
+      <image:title>Consultorio Gelso — Medicina estética Córdoba</image:title>
+      <image:caption>Interior del consultorio de la Dra. Gelso en Córdoba, Argentina.</image:caption>
+    </image:image>
+  </url>
+</urlset>
