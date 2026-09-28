@@ -413,11 +413,9 @@ function About() {
             </div>
 
             {/* Title */}
-            <h2 className="about-text-block mt-4 font-display text-[clamp(2.5rem,5.5vw,4.4rem)] leading-[.92] tracking-[-.025em] text-[#211b18]"
+            <h2 className="about-text-block mt-4 font-display text-[clamp(1.85rem,4.5vw,3.6rem)] leading-tight tracking-[-.02em] text-[#211b18]"
               data-testid="text-about-title">
-              Tu rostro,<br />
-              <em className="font-normal text-[#856540]">tu historia,</em><br />
-              tu plan.
+              Tu rostro, <em className="font-normal text-[#856540]">tu historia</em>, tu plan.
             </h2>
 
             {/* Narrative text */}
