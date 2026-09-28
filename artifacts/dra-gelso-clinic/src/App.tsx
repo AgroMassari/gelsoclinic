@@ -1,6 +1,6 @@
-﻿import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
-import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, MapPin, Menu, X } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, MapPin, Menu, ShieldCheck, Sparkles, UserCheck, X } from 'lucide-react';
 
 function WhatsAppIcon({ className = '' }: { className?: string }) {
   return (
@@ -174,7 +174,7 @@ function Header() {
           Solicitar turno <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
         <button type="button"
-          className="rounded-full border border-[#cdb38b]/40 p-2 text-[#f5eee4] backdrop-blur-sm transition hover:border-[#cdb38b] hover:bg-[#cdb38b]/10 lg:hidden"
+          className="rounded-full border border-[#cdb38b]/40 p-2.5 text-[#f5eee4] backdrop-blur-sm transition hover:border-[#cdb38b] hover:bg-[#cdb38b]/10 lg:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
           data-testid="button-mobile-menu">
@@ -182,19 +182,20 @@ function Header() {
         </button>
       </div>
       {menuOpen && (
-        <div className="mobile-menu-backdrop border-y border-[#cdb38b]/15 px-6 py-7 lg:hidden">
-          <nav className="flex flex-col gap-6" aria-label="Menú móvil">
+        <div className="mobile-menu-backdrop fixed inset-x-0 top-[73px] border-b border-[#cdb38b]/20 px-6 py-8 shadow-2xl backdrop-blur-xl lg:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+          <nav className="flex flex-col gap-5" aria-label="Menú móvil">
             {links.map(([label, href]) => (
               <a href={href} onClick={() => setMenuOpen(false)}
-                className="text-[.7rem] font-semibold uppercase tracking-[.25em] text-[#f5eee4] transition hover:text-[#cdb38b]"
+                className="py-1 text-[.75rem] font-semibold uppercase tracking-[.25em] text-[#f5eee4] transition hover:text-[#cdb38b]"
                 key={href} data-testid={`link-mobile-${label.toLowerCase().replaceAll(' ', '-')}`}>
                 {label}
               </a>
             ))}
             <a href={appointmentUrl} target="_blank" rel="noreferrer"
-              className="mt-2 border border-[#cdb38b] px-4 py-3 text-center text-[.62rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:bg-[#cdb38b] hover:text-[#171411]"
+              onClick={() => setMenuOpen(false)}
+              className="mt-3 flex items-center justify-center gap-2 border border-[#cdb38b] bg-[#cdb38b]/15 px-4 py-3.5 text-center text-[.66rem] font-bold uppercase tracking-[.2em] text-[#cdb38b] transition hover:bg-[#cdb38b] hover:text-[#171411]"
               data-testid="link-mobile-appointment">
-              Solicitar turno
+              Solicitar turno <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </nav>
         </div>
@@ -203,14 +204,9 @@ function Header() {
   );
 }
 
-
-
-
-
-
 /* ─── Pillar Data ────────────────────────────────── */
 const pillars = [
-{ number: '01', title: 'Precisión', copy: 'Cada decisión nace de una evaluación médica atenta y rigurosa.' },
+  { number: '01', title: 'Precisión', copy: 'Cada decisión nace de una evaluación médica atenta y rigurosa.' },
   { number: '02', title: 'Armonía', copy: 'Tratamientos que respetan tus rasgos, tu identidad y tus tiempos.' },
   { number: '03', title: 'Naturalidad', copy: 'Resultados sutiles para que te reconozcas en tu mejor versión.' },
 ];
@@ -218,33 +214,33 @@ const pillars = [
 /* ─── Hero Section ───────────────────────────────── */
 function Hero() {
   return (
-    <section id="inicio" className="relative min-h-[100dvh] overflow-hidden bg-[#100e0b] lg:min-h-[100dvh]">
+    <section id="inicio" className="relative min-h-[100dvh] overflow-hidden bg-[#100e0b]">
       <div className="hero-glow right-[5%] top-[8%] h-[480px] w-[480px] bg-[#cdb38b]/5" aria-hidden="true" />
       <div className="hero-glow right-[18%] top-[32%] h-[320px] w-[320px] bg-[#3d4f38]/25" aria-hidden="true" />
       <div className="hero-glow right-[22%] top-[35%] h-[260px] w-[260px] bg-[#9d6b2e]/8" aria-hidden="true" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(61,79,56,.18),transparent_48%),radial-gradient(ellipse_at_72%_28%,rgba(116,72,43,.2),transparent_42%),linear-gradient(115deg,#100e0b_0%,#100e0b_42%,rgba(16,14,11,.88)_58%,rgba(16,14,11,.2)_100%)]" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(61,79,56,.18),transparent_48%),radial-gradient(ellipse_at_72%_28%,rgba(116,72,43,.2),transparent_42%),linear-gradient(115deg,#100e0b_0%,#100e0b_55%,rgba(16,14,11,.82)_75%,rgba(16,14,11,.25)_100%)]" aria-hidden="true" />
       <div id="hero-image-wrap" className="hero-image-wrap absolute right-0 top-0 h-full w-[88%] overflow-hidden sm:w-[80%] lg:w-[56%] xl:w-[50%]"
         style={{ clipPath: 'inset(0 100% 0 0)' }}>
         <img src={heroPortraitPath} alt="Dra. María Pía Gelso — medicina estética integral en Córdoba"
-          className="hero-image h-full w-full"
+          className="hero-image h-full w-full object-cover object-top"
           data-testid="img-hero-portrait"
           decoding="async"
           fetchPriority="high"
           style={{ transform: 'scale(1.12)' }} />
         <div className="hero-vial-highlight pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
         <div className="hero-image-brand-fade pointer-events-none absolute inset-x-0 top-0 z-[1] h-[22%]" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#100e0b_0%,rgba(16,14,11,.18)_38%,transparent_100%)]" />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#100e0b] via-[#100e0b]/15 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(16,14,11,.55)_0%,transparent_18%,transparent_72%,rgba(16,14,11,.65)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#100e0b_0%,rgba(16,14,11,.22)_45%,transparent_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#100e0b] via-[#100e0b]/20 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(16,14,11,.6)_0%,transparent_18%,transparent_72%,rgba(16,14,11,.7)_100%)]" />
         <div className="absolute right-0 top-0 z-[2] h-full w-px bg-gradient-to-b from-transparent via-[#cdb38b]/25 to-transparent" aria-hidden="true" />
       </div>
-      <div className="relative mx-auto flex min-h-[100dvh] max-w-[1320px] flex-col justify-center px-5 pt-24 pb-20 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex min-h-[100dvh] max-w-[1320px] flex-col justify-center px-5 pt-28 pb-20 sm:px-8 lg:px-12">
         <div className="max-w-[660px]">
-          <div className="mb-8 flex items-center gap-3" data-testid="text-hero-eyebrow">
-            <span id="hero-eyebrow-line" className="h-px w-12 bg-[#cdb38b]" style={{ transformOrigin: 'left', transform: 'scaleX(0)' }} />
+          <div className="mb-6 flex items-center gap-3 sm:mb-8" data-testid="text-hero-eyebrow">
+            <span id="hero-eyebrow-line" className="h-px w-10 sm:w-12 bg-[#cdb38b]" style={{ transformOrigin: 'left', transform: 'scaleX(0)' }} />
             <span id="hero-eyebrow-text" className="eyebrow" style={{ opacity: 0 }}>Medicina estética integral</span>
           </div>
-          <h1 className="max-w-[600px] font-display text-[4.4rem] font-medium leading-[.84] tracking-[-.03em] text-[#f5eee4] sm:text-[6.4rem] lg:text-[7.8rem]"
+          <h1 className="max-w-[620px] font-display text-[clamp(2.9rem,11.5vw,4.5rem)] font-medium leading-[.88] tracking-[-.03em] text-[#f5eee4] sm:text-[6.2rem] lg:text-[7.6rem]"
             data-testid="text-hero-title">
             <span className="hero-title-word" style={{ opacity: 0 }}>La</span>
             {' '}
@@ -258,22 +254,27 @@ function Hero() {
               <span className="hero-title-word" style={{ opacity: 0 }}>sutil.</span>
             </em>
           </h1>
-          <p id="hero-subtitle" className="mt-9 max-w-[480px] text-[.87rem] leading-7 text-[#d9cfc3] sm:text-[.96rem]" style={{ opacity: 0 }}>
-            <strong className="font-semibold text-[#e8dfd3]">Dra. María Pía Gelso (MP 47298)</strong>
-            {' '}— medicina estética integral en Río Segundo, Pilar y Nueva Córdoba. Precisión, armonía y naturalidad con criterio médico.
+          <p id="hero-subtitle" className="mt-7 max-w-[500px] text-[.86rem] leading-7 text-[#d9cfc3] sm:mt-9 sm:text-[.96rem]" style={{ opacity: 0 }}>
+            <strong className="font-semibold text-[#e8dfd3]">Dra. María Pía Gelso</strong>
+            {' '}— medicina estética integral en Río Segundo, Pilar y Nueva Córdoba. Precisión clínica, armonía facial y resultados naturales sin excesos.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 sm:mt-10">
+            <a id="hero-cta-primary" href={appointmentUrl} target="_blank" rel="noreferrer"
+              className="btn-primary inline-flex items-center justify-center gap-3 px-6 py-4 text-[.64rem] font-bold uppercase tracking-[.2em] shadow-lg"
+              data-testid="link-hero-appointment" style={{ opacity: 0 }}>
+              Solicitar turno <ArrowUpRight className="h-4 w-4" />
+            </a>
             <a id="hero-cta-secondary" href="#tratamientos"
-              className="btn-outline inline-flex items-center gap-3 border border-[#cdb38b]/35 px-5 py-4 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#e3d6c8] transition hover:border-[#cdb38b]/70 hover:text-[#cdb38b]"
+              className="btn-outline inline-flex items-center justify-center gap-3 border border-[#cdb38b]/35 px-5 py-4 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#e3d6c8] transition hover:border-[#cdb38b]/70 hover:text-[#cdb38b]"
               data-testid="link-hero-treatments" style={{ opacity: 0 }}>
               Conocer tratamientos <ArrowDown className="h-4 w-4" />
             </a>
           </div>
         </div>
         <div id="hero-bottom-bar"
-          className="mt-auto flex items-end justify-between border-t border-[#cdb38b]/25 pt-5 lg:absolute lg:bottom-10 lg:left-12 lg:right-12 lg:mt-0"
+          className="mt-12 flex items-end justify-between border-t border-[#cdb38b]/25 pt-5 lg:absolute lg:bottom-10 lg:left-12 lg:right-12 lg:mt-0"
           style={{ opacity: 0 }}>
-          <span className="text-[.58rem] font-bold uppercase tracking-[.22em] text-[#cdb38b]">MP 47298</span>
+          <span className="text-[.58rem] font-bold uppercase tracking-[.22em] text-[#cdb38b]">Córdoba · Argentina</span>
           <span className="hidden text-[.58rem] font-bold uppercase tracking-[.22em] text-[#d9cfc3]/60 sm:block">Medicina estética integral</span>
           <span className="pulse-gold text-[.58rem] font-bold uppercase tracking-[.22em] text-[#d9cfc3]/55">
             Scroll <ArrowDown className="ml-1 inline-block h-3.5 w-3.5" />
@@ -359,49 +360,130 @@ const treatments = [
 /* ─── About Section ──────────────────────────────── */
 function About() {
   return (
-    <section id="sobre-mi" className="glow-border relative overflow-hidden bg-[#e7ded2] text-[#211b18]">
-      <div className="absolute right-0 top-0 hidden h-full w-[37%] bg-[#dacbb9] lg:block" aria-hidden="true" />
-      <div className="relative mx-auto grid max-w-[1320px] gap-14 px-5 py-24 sm:px-8 md:py-32 lg:grid-cols-[.9fr_1.1fr] lg:gap-24 lg:px-12">
+    <section id="sobre-mi" className="glow-border relative overflow-hidden bg-gradient-to-b from-[#eee5d8] via-[#e8dfd2] to-[#e4d7c8] text-[#211b18] border-y border-[#cdb38b]/30">
+      <div className="relative mx-auto max-w-[1360px] px-5 py-20 sm:px-8 md:py-28 lg:px-12">
+        <div className="grid items-center gap-12 lg:grid-cols-[430px_1fr] lg:gap-16 xl:grid-cols-[460px_1fr] xl:gap-20">
 
-        {/* Image col */}
-        <div className="relative order-2 self-end lg:order-1">
-          {/* Corner decoration */}
-          <div className="about-corner absolute -left-5 -top-5 h-24 w-24 border-l border-t border-[#9d7b50] sm:-left-8 sm:-top-8" aria-hidden="true" />
-          <div id="about-image-wrap"
-            className="relative mx-auto max-w-[420px] overflow-hidden bg-[#211b18] lg:mx-0"
-            style={{ clipPath: 'inset(0 0 100% 0)' }}>
-            <img src={aboutPortraitPath} alt="Dra. María Pía Gelso — consultorio de medicina estética en Córdoba"
-              loading="lazy" decoding="async"
-              className="about-portrait aspect-[.82] w-full object-cover grayscale-[.1]"
-              style={{ transform: 'scale(1.1)' }}
-              data-testid="img-about-portrait" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#211b18] to-transparent p-6 pt-16">
-              <p className="font-display text-2xl text-[#f5eee4]">Dra. María Pía Gelso</p>
-              <p className="mt-1 text-[.6rem] uppercase tracking-[.2em] text-[#cdb38b]">MP 47298</p>
+          {/* Image col */}
+          <div className="relative mx-auto w-full max-w-[450px] order-2 lg:order-1">
+            {/* Corner decorations */}
+            <div className="about-corner absolute -left-4 -top-4 h-20 w-20 border-l-2 border-t-2 border-[#9d7b50] sm:-left-6 sm:-top-6" aria-hidden="true" />
+            <div className="about-corner absolute -bottom-4 -right-4 h-20 w-20 border-b-2 border-r-2 border-[#9d7b50] sm:-bottom-6 sm:-right-6" aria-hidden="true" />
+
+            <div id="about-image-wrap"
+              className="relative overflow-hidden rounded-sm bg-[#211b18] shadow-2xl ring-1 ring-[#9d7b50]/35"
+              style={{ clipPath: 'inset(0 0 100% 0)' }}>
+              <img
+                src={aboutPortraitPath}
+                alt="Dra. María Pía Gelso — Médica especialista en Medicina Estética Integral en Córdoba"
+                loading="lazy"
+                decoding="async"
+                className="about-portrait aspect-[.82] w-full object-cover"
+                style={{ transform: 'scale(1.1)' }}
+                data-testid="img-about-portrait"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#1b1612] via-[#1b1612]/85 to-transparent p-6 pt-16">
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <p className="font-display text-2xl tracking-wide text-[#f5eee4]">Dra. María Pía Gelso</p>
+                    <p className="mt-1 text-[.64rem] uppercase tracking-[.22em] text-[#cdb38b]">
+                      Medicina Estética Integral
+                    </p>
+                  </div>
+                  <span className="shrink-0 rounded-xs border border-[#cdb38b]/45 bg-[#1b1612]/60 px-2.5 py-1 text-[.6rem] font-bold tracking-[.18em] text-[#e8dfd3]">
+                    MP 47298
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Text col */}
-        <div className="about-text-block order-1 flex flex-col justify-center max-lg:pr-[4.75rem] lg:order-2">
-          <span className="eyebrow !text-[#94734e] about-text-block">Criterio médico · MP 47298</span>
-          <h2 className="about-text-block mt-6 max-w-[630px] font-display text-[clamp(2.65rem,10.5vw,5.2rem)] leading-[.9] tracking-[-.025em]"
-            data-testid="text-about-title">
-            Tu rostro,<br /><em>tu historia,</em><br />tu plan.
-          </h2>
-          <div className="about-text-block mt-8 grid max-w-[590px] gap-5 border-t border-[#9d7b50]/35 pt-7 sm:grid-cols-[1fr_1fr]">
-            <p className="text-[.83rem] leading-7 text-[#574d46]">
-              Soy la Dra. María Pía Gelso, médica especializada en Medicina Estética Integral. Trabajo con precisión clínica para realzar lo que ya te define, sin excesos ni resultados artificiales.
-            </p>
-            <p className="text-[.83rem] leading-7 text-[#574d46]">
-              Cada consulta incluye evaluación integral y un plan a medida. El objetivo: que te veas fresca, armónica y reconocible, con resultados progresivos y naturales.
-            </p>
+          {/* Text col */}
+          <div className="order-1 flex flex-col justify-center lg:order-2">
+            {/* Eyebrow */}
+            <div className="about-text-block flex items-center gap-3">
+              <span className="h-px w-8 bg-[#94734e]/60" aria-hidden="true" />
+              <span className="eyebrow !text-[#856540] text-[.64rem] font-bold uppercase tracking-[.22em]">
+                Criterio Médico Especializado
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-[#94734e]/50" aria-hidden="true" />
+              <span className="text-[.64rem] font-bold uppercase tracking-[.18em] text-[#856540]">
+                Atención Personalizada
+              </span>
+            </div>
+
+            {/* Title */}
+            <h2 className="about-text-block mt-4 font-display text-[clamp(2.5rem,5.5vw,4.4rem)] leading-[.92] tracking-[-.025em] text-[#211b18]"
+              data-testid="text-about-title">
+              Tu rostro,<br />
+              <em className="font-normal text-[#856540]">tu historia,</em><br />
+              tu plan.
+            </h2>
+
+            {/* Narrative text */}
+            <div className="about-text-block mt-6 border-t border-[#9d7b50]/30 pt-6">
+              <div className="grid gap-6 sm:grid-cols-2 text-[.85rem] leading-relaxed text-[#4e433b]">
+                <p>
+                  Soy la <strong className="font-semibold text-[#211b18]">Dra. María Pía Gelso</strong>, médica especializada en Medicina Estética Integral. Mi práctica profesional se basa en la precisión anatómica y el respeto irrestricto por tus rasgos individuales, buscando resaltar tu mejor versión con elegancia y rigor clínico.
+                </p>
+                <p>
+                  Cada consulta comienza con una <strong className="font-semibold text-[#211b18]">evaluación diagnóstica completa</strong> para trazar un plan a medida. El objetivo: resultados progresivos, naturales y seguros, sin excesos y con armonía en cada detalle.
+                </p>
+              </div>
+            </div>
+
+            {/* 3 Pillars / Feature Cards (Spans across the space, eliminating blank void) */}
+            <div className="about-text-block mt-7 grid gap-3.5 sm:grid-cols-3">
+              <div className="rounded-sm border border-[#9d7b50]/25 bg-[#ded1c0]/50 p-4 transition-all hover:bg-[#ded1c0]/85 hover:border-[#9d7b50]/45">
+                <div className="flex items-center gap-2 text-[#856540]">
+                  <Sparkles className="h-4 w-4 shrink-0" />
+                  <span className="text-[.62rem] font-bold uppercase tracking-[.14em]">Evaluación única</span>
+                </div>
+                <p className="mt-2 text-[.74rem] leading-snug text-[#574c43]">
+                  Análisis facial exhaustivo y protocolo individual diseñado según tu anatomía.
+                </p>
+              </div>
+
+              <div className="rounded-sm border border-[#9d7b50]/25 bg-[#ded1c0]/50 p-4 transition-all hover:bg-[#ded1c0]/85 hover:border-[#9d7b50]/45">
+                <div className="flex items-center gap-2 text-[#856540]">
+                  <ShieldCheck className="h-4 w-4 shrink-0" />
+                  <span className="text-[.62rem] font-bold uppercase tracking-[.14em]">Seguridad médica</span>
+                </div>
+                <p className="mt-2 text-[.74rem] leading-snug text-[#574c43]">
+                  Insumos biocompatibles autorizados y estándares rigurosos de bioseguridad.
+                </p>
+              </div>
+
+              <div className="rounded-sm border border-[#9d7b50]/25 bg-[#ded1c0]/50 p-4 transition-all hover:bg-[#ded1c0]/85 hover:border-[#9d7b50]/45">
+                <div className="flex items-center gap-2 text-[#856540]">
+                  <UserCheck className="h-4 w-4 shrink-0" />
+                  <span className="text-[.62rem] font-bold uppercase tracking-[.14em]">Sutileza y armonía</span>
+                </div>
+                <p className="mt-2 text-[.74rem] leading-snug text-[#574c43]">
+                  Cambios graduales que realzan tu frescura respetando tu gestualidad única.
+                </p>
+              </div>
+            </div>
+
+            {/* Bottom action row */}
+            <div className="about-text-block mt-8 flex flex-wrap items-center justify-between gap-5 border-t border-[#9d7b50]/25 pt-6">
+              <a
+                href={appointmentUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-3 bg-[#211b18] px-6 py-3.5 text-[.66rem] font-bold uppercase tracking-[.2em] text-[#e8dfd3] shadow-md transition hover:bg-[#382f2a] hover:text-[#cdb38b]"
+                data-testid="link-about-appointment"
+              >
+                <span>Reservar evaluación</span>
+                <ArrowUpRight className="h-4 w-4 text-[#cdb38b]" />
+              </a>
+
+              <div className="flex items-center gap-2 text-[.7rem] text-[#6d5e53]">
+                <MapPin className="h-3.5 w-3.5 text-[#856540] shrink-0" />
+                <span>Consultorios en <strong>Río Segundo</strong> · <strong>Pilar</strong> · <strong>Nueva Córdoba</strong></span>
+              </div>
+            </div>
           </div>
-          <a href={appointmentUrl} target="_blank" rel="noreferrer"
-            className="about-text-block mt-9 inline-flex w-fit items-center gap-3 border-b border-[#94734e] pb-3 text-[.64rem] font-bold uppercase tracking-[.2em] text-[#4a3b2e] transition hover:border-[#211b18] hover:text-[#211b18]"
-            data-testid="link-about-appointment">
-            Reservar evaluación <ArrowUpRight className="h-4 w-4" />
-          </a>
         </div>
       </div>
     </section>
@@ -412,31 +494,67 @@ function About() {
 function TreatmentAccordion() {
   const [open, setOpen] = useState(0);
   const activeTreatment = treatments[open];
+
   return (
     <div className="mt-12 grid gap-4 lg:grid-cols-[.78fr_1.22fr] lg:gap-5">
-      <div className="space-y-2">
+      {/* Treatments list / Mobile Accordion */}
+      <div className="space-y-3">
         {treatments.map((treatment, index) => {
           const expanded = open === index;
           return (
-            <button type="button" key={treatment.number}
-              className={`treatment-card group flex w-full items-center gap-4 border px-4 py-4 text-left transition sm:px-5 sm:py-5 ${expanded ? 'treatment-card-active' : ''}`}
-              onClick={() => setOpen(index)}
-              aria-pressed={expanded}
-              data-testid={`button-treatment-${treatment.number}`}>
-              <span className="font-display text-lg text-[#cdb38b]">{treatment.number}</span>
-              <span className="min-w-0 flex-1">
-                <span className="block font-display text-[1.25rem] leading-[.95] text-[#f5eee4] sm:text-[1.5rem]">{treatment.title}</span>
-                <span className="mt-2 block text-[.56rem] font-bold uppercase tracking-[.16em] text-[#9e9185]">
-                  {treatment.services.length} {treatment.services.length === 1 ? 'protocolo' : 'protocolos'}
+            <div key={treatment.number} className="overflow-hidden rounded-xs border border-[#cdb38b]/20 bg-[#1c1610]/40 transition">
+              <button
+                type="button"
+                className={`treatment-card group flex w-full items-center gap-4 border-0 px-4 py-4 text-left transition sm:px-5 sm:py-5 ${expanded ? 'treatment-card-active' : ''}`}
+                onClick={() => setOpen(index)}
+                aria-expanded={expanded}
+                data-testid={`button-treatment-${treatment.number}`}
+              >
+                <span className="font-display text-lg text-[#cdb38b]">{treatment.number}</span>
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-[1.25rem] leading-[.95] text-[#f5eee4] sm:text-[1.5rem]">{treatment.title}</span>
+                  <span className="mt-2 block text-[.56rem] font-bold uppercase tracking-[.16em] text-[#9e9185]">
+                    {treatment.services.length} {treatment.services.length === 1 ? 'protocolo' : 'protocolos'}
+                  </span>
                 </span>
-              </span>
-              <ChevronDown className={`h-4 w-4 shrink-0 text-[#cdb38b] transition-transform duration-300 ${expanded ? 'rotate-180' : 'group-hover:translate-y-1'}`} />
-            </button>
+                <ChevronDown className={`h-4 w-4 shrink-0 text-[#cdb38b] transition-transform duration-300 ${expanded ? 'rotate-180' : 'group-hover:translate-y-1'}`} />
+              </button>
+
+              {/* Mobile Inline Expansion (revealed directly below the card on mobile/tablet) */}
+              {expanded && (
+                <div className="border-t border-[#cdb38b]/20 bg-[#14100c] p-4 sm:p-5 lg:hidden animate-in fade-in duration-300">
+                  <div className="space-y-5">
+                    {treatment.services.map((service, serviceIndex) => (
+                      <article key={service.title} className="service-detail border-b border-[#cdb38b]/10 pb-4 last:border-0 last:pb-0">
+                        <div className="flex gap-2.5">
+                          <span className="pt-0.5 text-[.58rem] font-bold tracking-[.16em] text-[#cdb38b]">0{serviceIndex + 1}</span>
+                          <div>
+                            <h4 className="font-display text-[1.2rem] leading-snug text-[#f5eee4]">{service.title}</h4>
+                            <p className="mt-1.5 text-[.74rem] leading-relaxed text-[#c7b9ac]">{service.description}</p>
+                            {service.note && <p className="mt-1.5 text-[.68rem] leading-relaxed text-[#998d82]">{service.note}</p>}
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                  <a
+                    href={appointmentUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-5 inline-flex w-full items-center justify-center gap-2 border border-[#cdb38b]/60 bg-[#cdb38b]/10 py-3 text-center text-[.62rem] font-bold uppercase tracking-[.16em] text-[#cdb38b] transition hover:bg-[#cdb38b] hover:text-[#171411]"
+                    data-testid={`link-treatment-mobile-appointment-${treatment.number}`}
+                  >
+                    Consultar por este tratamiento <ArrowUpRight className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
 
-      <div className="treatment-detail-panel min-h-[420px] border border-[#cdb38b]/25 bg-[#1c1610] p-5 sm:p-7 lg:p-8" aria-live="polite">
+      {/* Desktop Master-Detail Panel (visible on lg screens and up) */}
+      <div className="treatment-detail-panel hidden min-h-[420px] rounded-xs border border-[#cdb38b]/25 bg-[#1c1610] p-6 lg:block lg:p-8" aria-live="polite">
         <div className="flex items-start justify-between gap-5 border-b border-[#cdb38b]/20 pb-5">
           <div>
             <span className="eyebrow">Área de tratamiento</span>
@@ -459,7 +577,7 @@ function TreatmentAccordion() {
           ))}
         </div>
         <a href={appointmentUrl} target="_blank" rel="noreferrer"
-          className="mt-7 inline-flex items-center gap-3 border-b border-[#cdb38b] pb-2 text-[.6rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:text-[#f0d9ae]"
+          className="mt-8 inline-flex items-center gap-3 border-b border-[#cdb38b] pb-2 text-[.64rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:text-[#f0d9ae]"
           data-testid="link-treatment-appointment">
           Consultar por este protocolo <ArrowUpRight className="h-3.5 w-3.5" />
         </a>
@@ -472,11 +590,11 @@ function TreatmentAccordion() {
 function Treatments() {
   return (
     <section id="tratamientos" className="bg-[#171411]">
-      <div className="mx-auto max-w-[1320px] px-5 py-24 sm:px-8 md:py-32 lg:px-12">
+      <div className="mx-auto max-w-[1320px] px-5 py-20 sm:px-8 md:py-32 lg:px-12">
         <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:items-end lg:gap-24">
           <div>
             <span className="eyebrow treatments-title-word">Tratamientos</span>
-            <h2 className="mt-6 max-w-[450px] font-display text-[4rem] leading-[.87] tracking-[-.025em] text-[#f5eee4] sm:text-[5.4rem]"
+            <h2 className="mt-6 max-w-[450px] font-display text-[clamp(2.8rem,9vw,5.4rem)] leading-[.87] tracking-[-.025em] text-[#f5eee4]"
               data-testid="text-treatments-title">
               <span className="treatments-title-word block">Tu belleza,</span>
               <em className="text-[#cdb38b] treatments-title-word">en detalle.</em>
@@ -515,7 +633,7 @@ function Method() {
     <section id="metodo" className="bg-[#22190f]">
       <div className="mx-auto grid max-w-[1320px] lg:grid-cols-[1.02fr_.98fr]">
         {/* Image */}
-        <div className="relative min-h-[520px] overflow-hidden lg:min-h-[680px]">
+        <div className="relative min-h-[380px] sm:min-h-[480px] overflow-hidden lg:min-h-[680px]">
           <img id="method-image" src={methodReferencePath}
             alt="Dra. María Pía Gelso — método de medicina estética integral"
             loading="lazy" decoding="async"
@@ -526,18 +644,18 @@ function Method() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#cdb38b]/30 to-transparent" aria-hidden="true" />
           <div className="absolute bottom-8 left-5 right-5 flex items-end justify-between sm:left-8 sm:right-8 lg:left-12 lg:right-12">
             <span className="eyebrow">El método Gelso</span>
-            <span className="font-display text-[5rem] leading-none text-[#cdb38b]/40">03</span>
+            <span className="font-display text-[4rem] sm:text-[5rem] leading-none text-[#cdb38b]/40">03</span>
           </div>
         </div>
 
         {/* Text */}
-        <div id="method-title-wrap" className="flex flex-col justify-center px-5 py-20 sm:px-8 md:py-28 lg:px-20">
+        <div id="method-title-wrap" className="flex flex-col justify-center px-5 py-16 sm:px-8 md:py-28 lg:px-20">
           <span className="eyebrow">La consulta</span>
-          <h2 className="mt-6 font-display text-[3.8rem] leading-[.9] text-[#f5eee4] sm:text-[5rem]"
+          <h2 className="mt-5 sm:mt-6 font-display text-[clamp(2.8rem,9vw,5rem)] leading-[.9] text-[#f5eee4]"
             data-testid="text-method-title">
             Primero,<br /><em className="text-[#cdb38b]">entender.</em>
           </h2>
-          <div className="mt-10 space-y-5 text-[.82rem] leading-7 text-[#c3b4a7]">
+          <div className="mt-8 sm:mt-10 space-y-5 text-[.82rem] leading-7 text-[#c3b4a7]">
             <p className="method-step flex items-start gap-3">
               <span className="shrink-0 text-[#cdb38b] font-bold">01</span>
               Escuchamos qué querés mejorar y qué esperás del proceso.
@@ -551,7 +669,7 @@ function Method() {
               Diseñamos un plan claro, gradual y exclusivamente tuyo.
             </p>
           </div>
-          <div className="mt-10 h-px w-full bg-gradient-to-r from-[#cdb38b]/40 to-transparent" aria-hidden="true" />
+          <div className="mt-8 sm:mt-10 h-px w-full bg-gradient-to-r from-[#cdb38b]/40 to-transparent" aria-hidden="true" />
         </div>
       </div>
     </section>
@@ -564,7 +682,7 @@ function FaqSection() {
     <section id="preguntas-frecuentes" className="bg-[#171411] px-5 py-20 sm:px-8 lg:px-12" aria-labelledby="faq-heading">
       <div className="mx-auto max-w-[820px]">
         <span className="eyebrow">Preguntas frecuentes</span>
-        <h2 id="faq-heading" className="mt-5 font-display text-[2.4rem] leading-[.92] tracking-[-.03em] text-[#f5eee4] sm:text-[3rem]">
+        <h2 id="faq-heading" className="mt-5 font-display text-[clamp(2rem,6vw,3rem)] leading-[.92] tracking-[-.03em] text-[#f5eee4]">
           Dudas sobre turnos y consultorios
         </h2>
         <p className="mt-5 text-[.88rem] leading-7 text-[#b8aea3]">
@@ -598,19 +716,19 @@ function Contact() {
         <div className="absolute -right-16 top-1/2 hidden h-[min(800px,140vw)] w-[min(800px,140vw)] -translate-y-1/2 rounded-full border border-[#9d7b50]/08 sm:block" />
       </div>
 
-      <div id="ubicaciones" className="relative mx-auto max-w-[1320px] scroll-mt-28 px-5 py-24 sm:px-8 md:py-32 lg:px-12">
-        <header className="contact-intro mb-12 max-w-[720px] lg:mb-14">
-          <span className="eyebrow !text-[#94734e]">Consultorios · MP 47298</span>
+      <div id="ubicaciones" className="relative mx-auto max-w-[1320px] scroll-mt-28 px-5 py-20 sm:px-8 md:py-32 lg:px-12">
+        <header className="contact-intro mb-10 max-w-[720px] sm:mb-14">
+          <span className="eyebrow !text-[#94734e]">Nuestras Sedes · Consultorios Médicos</span>
           <h2
             id="locations-heading"
-            className="mt-5 font-display text-[3rem] leading-[.9] tracking-[-.03em] text-[#211b18] sm:text-[4.2rem]"
+            className="mt-4 sm:mt-5 font-display text-[clamp(2.6rem,7vw,4.2rem)] leading-[.9] tracking-[-.03em] text-[#211b18]"
             data-testid="text-locations-title"
           >
             Dónde encontrarnos en <em className="text-[#7a5c3a]">Córdoba</em>
           </h2>
-          <p className="contact-intro-body mt-6 text-[.88rem] leading-7 text-[#574d46] sm:text-[.94rem]">
-            Dra. María Pía Gelso — medicina estética integral en <strong className="font-semibold text-[#3d342e]">Río Segundo</strong> y{' '}
-            <strong className="font-semibold text-[#3d342e]">Pilar</strong>. Consultá rutas en el mapa o solicitá turno por WhatsApp.
+          <p className="contact-intro-body mt-5 text-[.88rem] leading-7 text-[#574d46] sm:mt-6 sm:text-[.94rem]">
+            Dra. María Pía Gelso — medicina estética integral en <strong className="font-semibold text-[#3d342e]">Río Segundo</strong>,{' '}
+            <strong className="font-semibold text-[#3d342e]">Pilar</strong> y <strong className="font-semibold text-[#3d342e]">Nueva Córdoba</strong>. Consultá rutas en el mapa o solicitá turno por WhatsApp.
           </p>
         </header>
 
@@ -636,7 +754,7 @@ function Contact() {
               <meta itemProp="longitude" content={String(location.longitude)} />
               <link itemProp="hasMap" href={location.mapsUrl} />
 
-              <div className="location-map-frame relative aspect-[5/3] w-full overflow-hidden bg-[#cfc0ae] sm:aspect-[16/10]">
+              <div className="location-map-frame relative aspect-[16/10] w-full overflow-hidden bg-[#cfc0ae]">
                 <iframe
                   title={`Mapa del consultorio Gelso en ${location.city}, Córdoba — ${location.address}`}
                   src={location.embedUrl}
@@ -648,10 +766,10 @@ function Contact() {
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#ebe0d2]/80 to-transparent" aria-hidden="true" />
               </div>
 
-              <div className="flex flex-col gap-5 border-t border-[#9d7b50]/25 px-6 py-6 sm:flex-row sm:items-end sm:justify-between">
+              <div className="flex flex-col gap-5 border-t border-[#9d7b50]/25 px-5 py-5 sm:px-6 sm:py-6 sm:flex-row sm:items-end sm:justify-between">
                 <div className="min-w-0">
                   <p className="text-[.58rem] font-bold uppercase tracking-[.22em] text-[#94734e]">Consultorio</p>
-                  <h3 className="mt-2 font-display text-2xl text-[#211b18]">{location.city}</h3>
+                  <h3 className="mt-1 font-display text-2xl text-[#211b18]">{location.city}</h3>
                   <p className="mt-2 flex items-start gap-2 text-[.8rem] leading-6 text-[#574d46]">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#94734e]" aria-hidden="true" />
                     <span>
@@ -666,7 +784,7 @@ function Contact() {
                     href={location.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#211b18] px-5 py-3.5 text-[.62rem] font-bold uppercase tracking-[.16em] text-[#f5eee4] transition hover:bg-[#3a2d22]"
+                    className="inline-flex items-center justify-center gap-2 bg-[#211b18] px-5 py-3.5 text-[.62rem] font-bold uppercase tracking-[.16em] text-[#f5eee4] transition hover:bg-[#3a2d22]"
                   >
                     Cómo llegar <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
@@ -674,7 +792,7 @@ function Contact() {
                     href={appointmentUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-1 py-1 text-[.62rem] font-bold uppercase tracking-[.14em] text-[#574d46] transition hover:text-[#211b18]"
+                    className="inline-flex items-center justify-center gap-2 px-1 py-1 text-[.62rem] font-bold uppercase tracking-[.14em] text-[#574d46] transition hover:text-[#211b18]"
                   >
                     Turno WhatsApp <ArrowUpRight className="h-3 w-3" />
                   </a>
@@ -684,7 +802,7 @@ function Contact() {
           ))}
         </div>
 
-        <div className="contact-info-col mt-14 grid gap-8 border-t border-[#9d7b50]/35 pt-8 text-[.67rem] font-semibold uppercase tracking-[.16em] text-[#665548] sm:grid-cols-3">
+        <div className="contact-info-col mt-12 grid gap-6 border-t border-[#9d7b50]/35 pt-8 text-[.67rem] font-semibold uppercase tracking-[.16em] text-[#665548] sm:mt-14 sm:grid-cols-3 sm:gap-8">
           <div>
             <span className="mb-2 block text-[#94734e]">Turnos</span>
             <a
@@ -724,18 +842,20 @@ function Contact() {
 /* ─── Footer ─────────────────────────────────────── */
 function Footer() {
   return (
-    <footer className="bg-[#100e0b] px-5 py-14 sm:px-8 lg:px-12">
-      <div className="mx-auto flex max-w-[1320px] flex-col gap-10 sm:flex-row sm:items-center sm:justify-between">
-        {/* Logo completo con todos sus textos visibles */}
-        <div className="flex flex-col items-start gap-4">
+    <footer className="bg-[#100e0b] px-5 py-12 sm:px-8 sm:py-14 lg:px-12">
+      <div className="mx-auto flex max-w-[1320px] flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col items-start gap-3">
           <BrandMark />
-          <p className="text-[.59rem] uppercase tracking-[.18em] text-[#887a6f]">
-            MP 47298 · Nueva Córdoba · Pilar · Río Segundo
+          <p className="text-[.62rem] font-medium tracking-[.12em] text-[#9d8d80]">
+            Dra. María Pía Gelso · Matrícula Profesional 47298
+          </p>
+          <p className="text-[.56rem] uppercase tracking-[.18em] text-[#74665a]">
+            Consultorios en Río Segundo · Pilar · Nueva Córdoba
           </p>
         </div>
-        <div className="max-w-[400px] text-[.62rem] leading-5 text-[#887a6f]">
-          <p>La información de este sitio es educativa y no sustituye una consulta médica. Cada tratamiento requiere evaluación individual.</p>
-          <p className="mt-3 text-[#cdb38b]">© {new Date().getFullYear()} Gelso · Córdoba, Argentina</p>
+        <div className="max-w-[420px] text-[.64rem] leading-relaxed text-[#887a6f]">
+          <p>La información de este sitio es médica y educativa. No sustituye una consulta presencial personalizada.</p>
+          <p className="mt-2.5 text-[#cdb38b]">© {new Date().getFullYear()} Gelso Medicina Estética Integral · Córdoba, Argentina</p>
         </div>
       </div>
     </footer>

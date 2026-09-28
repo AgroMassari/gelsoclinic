@@ -15,7 +15,7 @@ export const TWITTER_HANDLE = '@Dragelso';
 export const DEFAULT_TITLE =
   'Dra. Gelso María Pía · Medicina Estética Integral | Córdoba · Pilar · Río Segundo';
 export const DEFAULT_DESCRIPTION =
-  'Dra. María Pía Gelso (MP 47298): medicina estética integral en Río Segundo (Mendoza 1120), Pilar y Nueva Córdoba. Botox, microneedling, rellenos, PRP capilar y skinbooster. Turnos por WhatsApp al 3572 665637.';
+  'Medicina estética integral con la Dra. María Pía Gelso en Río Segundo, Pilar y Nueva Córdoba. Tratamientos de botox, ácido hialurónico, microneedling y armonización facial personalizada. Turnos por WhatsApp.';
 
 export type FaqEntry = { question: string; answer: string };
 
@@ -102,7 +102,11 @@ export function buildStructuredDataGraph() {
         { '@type': 'MedicalProcedure', name: 'Mesoterapia facial' },
         { '@type': 'MedicalProcedure', name: 'Dermaplaning' },
       ],
-      location: [{ '@id': `${SITE_URL}/#consultorio-rio-segundo` }, { '@id': `${SITE_URL}/#consultorio-pilar` }],
+      location: [
+        { '@id': `${SITE_URL}/#consultorio-rio-segundo` },
+        { '@id': `${SITE_URL}/#consultorio-pilar` },
+        { '@id': `${SITE_URL}/#consultorio-nueva-cordoba` },
+      ],
       sameAs: [INSTAGRAM_URL],
       employee: { '@id': `${SITE_URL}/#doctor` },
       potentialAction: {
@@ -152,6 +156,24 @@ export function buildStructuredDataGraph() {
       },
       geo: { '@type': 'GeoCoordinates', latitude: -31.675277, longitude: -63.871228 },
       hasMap: 'https://www.google.com/maps/search/?api=1&query=-31.675277,-63.871228',
+    },
+    {
+      '@type': ['MedicalClinic', 'LocalBusiness'],
+      '@id': `${SITE_URL}/#consultorio-nueva-cordoba`,
+      name: 'Gelso — Consultorio Nueva Córdoba',
+      parentOrganization: { '@id': `${SITE_URL}/#clinic` },
+      url: `${SITE_URL}/#ubicaciones`,
+      telephone: PHONE_E164,
+      image: ASSET('/assets/gelso-logo.jpg'),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Córdoba Capital',
+        addressRegion: 'Nueva Córdoba, Córdoba',
+        postalCode: 'X5000',
+        addressCountry: 'AR',
+      },
+      geo: { '@type': 'GeoCoordinates', latitude: -31.4255, longitude: -64.1876 },
+      hasMap: 'https://www.google.com/maps/search/?api=1&query=Nueva+C%C3%B3rdoba,+C%C3%B3rdoba,+Argentina',
     },
     {
       '@type': ['Person', 'Physician'],
