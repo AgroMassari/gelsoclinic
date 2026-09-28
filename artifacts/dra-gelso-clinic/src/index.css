@@ -232,6 +232,7 @@
 
 /* ─── Pillars ────────────────────────────────────── */
 .pillar-item {
+  opacity: 1;
   will-change: transform, opacity;
 }
 

@@ -142,30 +142,37 @@ export function initHeroParallax() {
 
 /* ─── Scroll-Triggered Section Reveals ─────────────────────── */
 export function initScrollAnimations() {
-  // Pillars stagger
-  gsap.from('.pillar-item', {
-    scrollTrigger: { trigger: '.pillars-section', start: 'top 82%' },
-    opacity: 0, y: 40, duration: 0.9,
-    stagger: 0.18, ease: 'expo.out',
-  });
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches;
 
-  // Pillar numbers count-up feel
-  gsap.from('.pillar-number', {
-    scrollTrigger: { trigger: '.pillars-section', start: 'top 80%' },
-    opacity: 0, scale: 0.5, duration: 0.6,
-    stagger: 0.18, ease: 'back.out(1.6)',
-  });
+  if (!isMobile) {
+    // Pillars stagger on desktop
+    gsap.from('.pillar-item', {
+      scrollTrigger: { trigger: '.pillars-section', start: 'top 85%' },
+      opacity: 0, y: 30, duration: 0.8,
+      stagger: 0.15, ease: 'expo.out',
+    });
 
-  // About section — image reveal left-to-right
+    // Pillar numbers count-up feel
+    gsap.from('.pillar-number', {
+      scrollTrigger: { trigger: '.pillars-section', start: 'top 85%' },
+      opacity: 0, scale: 0.5, duration: 0.6,
+      stagger: 0.15, ease: 'back.out(1.6)',
+    });
+  } else {
+    // On mobile, guarantee 100% visibility immediately without blank gaps
+    gsap.set(['.pillar-item', '.pillar-number'], { opacity: 1, y: 0, scale: 1 });
+  }
+
+  // About section — image reveal
   ScrollTrigger.create({
     trigger: '#sobre-mi',
-    start: 'top 75%',
+    start: isMobile ? 'top 92%' : 'top 75%',
     onEnter: () => {
       const tl = gsap.timeline();
       tl.fromTo('#about-image-wrap', { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'power4.inOut' })
         .fromTo('#about-image-wrap img', { scale: 1.1 }, { scale: 1, duration: 1.2, ease: 'power3.out' }, 0)
-        .fromTo('.about-text-block', { opacity: 0, x: 50 }, { opacity: 1, x: 0, duration: 0.9, stagger: 0.14, ease: 'expo.out' }, 0.3)
-        .fromTo('.about-corner', { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 0.7, ease: 'expo.out' }, 0.2);
+        .fromTo('.about-text-block', { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.8, stagger: 0.12, ease: 'expo.out' }, 0.2)
+        .fromTo('.about-corner', { scaleX: 0, scaleY: 0 }, { scaleX: 1, scaleY: 1, duration: 0.6, ease: 'expo.out' }, 0.1);
     },
     once: true,
   });

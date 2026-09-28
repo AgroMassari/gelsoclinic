@@ -293,11 +293,11 @@ function Pillars() {
       <div className="mx-auto grid max-w-[1320px] divide-y divide-[#cdb38b]/15 px-5 sm:px-8 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-12">
         {pillars.map((pillar, index) => (
           <div key={pillar.number}
-            className={`pillar-item flex items-start gap-5 py-10 md:px-10 lg:py-12 first:md:pl-0 last:md:pr-0 reveal-delay-${index + 1}`}>
+            className={`pillar-item flex items-start gap-4 py-5 sm:py-7 md:px-8 lg:py-10 first:md:pl-0 last:md:pr-0`}>
             <span className="pillar-number font-display text-xl text-[#cdb38b]">{pillar.number}</span>
             <div>
-              <h2 className="font-display text-2xl text-[#f5eee4]">{pillar.title}</h2>
-              <p className="mt-2 max-w-[250px] text-[.72rem] leading-5 text-[#b7aaa0]">{pillar.copy}</p>
+              <h2 className="font-display text-xl sm:text-2xl text-[#f5eee4]">{pillar.title}</h2>
+              <p className="mt-1.5 max-w-[280px] text-[.74rem] leading-relaxed text-[#b7aaa0]">{pillar.copy}</p>
             </div>
           </div>
         ))}
