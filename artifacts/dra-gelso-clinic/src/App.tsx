@@ -33,14 +33,14 @@ const clinicLocations = [
   {
     city: 'Río Segundo',
     slug: 'rio-segundo',
-    address: 'Mendoza 1120',
+    address: 'Mendoza 985',
     region: 'Río Segundo, Córdoba, Argentina',
     postalCode: 'X5960',
     latitude: -31.7069,
     longitude: -63.9088,
     seoLine: 'Medicina estética integral en Río Segundo, Córdoba.',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Mendoza+1120,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina',
-    embedUrl: 'https://maps.google.com/maps?q=Mendoza+1120,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina&z=17&output=embed',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Mendoza+985,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina',
+    embedUrl: 'https://maps.google.com/maps?q=Mendoza+985,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina&z=17&output=embed',
   },
   {
     city: 'Pilar',
@@ -219,10 +219,10 @@ function Hero() {
       <div className="hero-glow right-[18%] top-[32%] h-[320px] w-[320px] bg-[#3d4f38]/25" aria-hidden="true" />
       <div className="hero-glow right-[22%] top-[35%] h-[260px] w-[260px] bg-[#9d6b2e]/8" aria-hidden="true" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_32%,rgba(61,79,56,.18),transparent_48%),radial-gradient(ellipse_at_72%_28%,rgba(116,72,43,.2),transparent_42%),linear-gradient(115deg,#100e0b_0%,#100e0b_55%,rgba(16,14,11,.82)_75%,rgba(16,14,11,.25)_100%)]" aria-hidden="true" />
-      <div id="hero-image-wrap" className="hero-image-wrap absolute right-0 top-0 h-full w-[88%] overflow-hidden sm:w-[80%] lg:w-[56%] xl:w-[50%]"
+      <div id="hero-image-wrap" className="hero-image-wrap absolute right-0 top-0 h-full w-[94%] overflow-hidden sm:w-[80%] lg:w-[56%] xl:w-[50%]"
         style={{ clipPath: 'inset(0 100% 0 0)' }}>
         <img src={heroPortraitPath} alt="Dra. María Pía Gelso — medicina estética integral en Córdoba"
-          className="hero-image h-full w-full object-cover object-top"
+          className="hero-image h-full w-full object-cover"
           data-testid="img-hero-portrait"
           decoding="async"
           fetchPriority="high"
@@ -230,17 +230,17 @@ function Hero() {
         <div className="hero-vial-highlight pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
         <div className="hero-image-brand-fade pointer-events-none absolute inset-x-0 top-0 z-[1] h-[22%]" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(90deg,#100e0b_0%,rgba(16,14,11,.22)_45%,transparent_100%)]" />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#100e0b] via-[#100e0b]/20 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(16,14,11,.6)_0%,transparent_18%,transparent_72%,rgba(16,14,11,.7)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-[#100e0b] via-[#100e0b]/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(16,14,11,.45)_0%,transparent_16%,rgba(16,14,11,.8)_72%,rgba(16,14,11,1)_100%)] sm:bg-[linear-gradient(180deg,rgba(16,14,11,.6)_0%,transparent_18%,transparent_72%,rgba(16,14,11,.7)_100%)]" />
         <div className="absolute right-0 top-0 z-[2] h-full w-px bg-gradient-to-b from-transparent via-[#cdb38b]/25 to-transparent" aria-hidden="true" />
       </div>
-      <div className="relative mx-auto flex min-h-[100dvh] max-w-[1320px] flex-col justify-center px-5 pt-28 pb-20 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex min-h-[100dvh] max-w-[1320px] flex-col justify-end pb-16 pt-28 sm:justify-center sm:pb-20 sm:pt-28 px-5 sm:px-8 lg:px-12">
         <div className="max-w-[660px]">
-          <div className="mb-6 flex items-center gap-3 sm:mb-8" data-testid="text-hero-eyebrow">
+          <div className="mb-5 flex items-center gap-3 sm:mb-8" data-testid="text-hero-eyebrow">
             <span id="hero-eyebrow-line" className="h-px w-10 sm:w-12 bg-[#cdb38b]" style={{ transformOrigin: 'left', transform: 'scaleX(0)' }} />
             <span id="hero-eyebrow-text" className="eyebrow" style={{ opacity: 0 }}>Medicina estética integral</span>
           </div>
-          <h1 className="max-w-[620px] font-display text-[clamp(2.9rem,11.5vw,4.5rem)] font-medium leading-[.88] tracking-[-.03em] text-[#f5eee4] sm:text-[6.2rem] lg:text-[7.6rem]"
+          <h1 className="max-w-[620px] font-display text-[clamp(2.75rem,10.5vw,4.5rem)] font-medium leading-[.9] tracking-[-.03em] text-[#f5eee4] sm:text-[6.2rem] lg:text-[7.6rem]"
             data-testid="text-hero-title">
             <span className="hero-title-word" style={{ opacity: 0 }}>La</span>
             {' '}
@@ -254,9 +254,9 @@ function Hero() {
               <span className="hero-title-word" style={{ opacity: 0 }}>sutil.</span>
             </em>
           </h1>
-          <p id="hero-subtitle" className="mt-7 max-w-[500px] text-[.86rem] leading-7 text-[#d9cfc3] sm:mt-9 sm:text-[.96rem]" style={{ opacity: 0 }}>
+          <p id="hero-subtitle" className="mt-5 max-w-[500px] text-[.84rem] leading-relaxed text-[#d9cfc3] sm:mt-9 sm:text-[.96rem]" style={{ opacity: 0 }}>
             <strong className="font-semibold text-[#e8dfd3]">Dra. María Pía Gelso</strong>
-            {' '}— medicina estética integral en Río Segundo, Pilar y Nueva Córdoba. Precisión clínica, armonía facial y resultados naturales sin excesos.
+            {' '}— medicina estética integral en Río Segundo y Pilar. Precisión clínica, armonía facial y resultados naturales sin excesos.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4 sm:mt-10">
             <a id="hero-cta-primary" href={appointmentUrl} target="_blank" rel="noreferrer"
@@ -478,7 +478,7 @@ function About() {
 
               <div className="flex items-center gap-2 text-[.7rem] text-[#6d5e53]">
                 <MapPin className="h-3.5 w-3.5 text-[#856540] shrink-0" />
-                <span>Consultorios en <strong>Río Segundo</strong> · <strong>Pilar</strong> · <strong>Nueva Córdoba</strong></span>
+                <span>Consultorios en <strong>Río Segundo</strong> y <strong>Pilar</strong></span>
               </div>
             </div>
           </div>
@@ -725,8 +725,8 @@ function Contact() {
             Dónde encontrarnos en <em className="text-[#7a5c3a]">Córdoba</em>
           </h2>
           <p className="contact-intro-body mt-5 text-[.88rem] leading-7 text-[#574d46] sm:mt-6 sm:text-[.94rem]">
-            Dra. María Pía Gelso — medicina estética integral en <strong className="font-semibold text-[#3d342e]">Río Segundo</strong>,{' '}
-            <strong className="font-semibold text-[#3d342e]">Pilar</strong> y <strong className="font-semibold text-[#3d342e]">Nueva Córdoba</strong>. Consultá rutas en el mapa o solicitá turno por WhatsApp.
+            Dra. María Pía Gelso — medicina estética integral en <strong className="font-semibold text-[#3d342e]">Río Segundo</strong> y{' '}
+            <strong className="font-semibold text-[#3d342e]">Pilar</strong>. Consultá rutas en el mapa o solicitá turno por WhatsApp.
           </p>
         </header>
 
@@ -848,7 +848,7 @@ function Footer() {
             Dra. María Pía Gelso · Matrícula Profesional 47298
           </p>
           <p className="text-[.56rem] uppercase tracking-[.18em] text-[#74665a]">
-            Consultorios en Río Segundo · Pilar · Nueva Córdoba
+            Consultorios en Río Segundo y Pilar
           </p>
         </div>
         <div className="max-w-[420px] text-[.64rem] leading-relaxed text-[#887a6f]">

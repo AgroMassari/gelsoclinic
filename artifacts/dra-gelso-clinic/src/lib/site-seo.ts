@@ -13,9 +13,9 @@ export const INSTAGRAM_HANDLE = '@Dra.gelso';
 export const TWITTER_HANDLE = '@Dragelso';
 
 export const DEFAULT_TITLE =
-  'Dra. Gelso María Pía · Medicina Estética Integral | Córdoba · Pilar · Río Segundo';
+  'Dra. Gelso María Pía · Medicina Estética Integral | Río Segundo · Pilar';
 export const DEFAULT_DESCRIPTION =
-  'Medicina estética integral con la Dra. María Pía Gelso en Río Segundo, Pilar y Nueva Córdoba. Tratamientos de botox, ácido hialurónico, microneedling y armonización facial personalizada. Turnos por WhatsApp.';
+  'Medicina estética integral con la Dra. María Pía Gelso en Río Segundo y Pilar. Tratamientos de botox, ácido hialurónico, microneedling y armonización facial personalizada. Turnos por WhatsApp.';
 
 export type FaqEntry = { question: string; answer: string };
 
@@ -23,12 +23,12 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     question: '¿Dónde atiende la Dra. Gelso?',
     answer:
-      'La Dra. María Pía Gelso atiende en Río Segundo (Mendoza 1120), en Pilar (zona Río Segundo) y en Nueva Córdoba según disponibilidad. En esta web encontrás mapas, direcciones y enlaces para solicitar turno.',
+      'La Dra. María Pía Gelso atiende en Río Segundo (Mendoza 985) y en Pilar (zona Río Segundo). En esta web encontrás mapas, direcciones y enlaces para solicitar turno.',
   },
   {
     question: '¿Cuál es la dirección del consultorio en Río Segundo?',
     answer:
-      'El consultorio Gelso en Río Segundo está en Mendoza 1120, Río Segundo, provincia de Córdoba. Podés ver la ubicación en el mapa del sitio o abrir la ruta en Google Maps.',
+      'El consultorio Gelso en Río Segundo está en Mendoza 985, Río Segundo, provincia de Córdoba. Podés ver la ubicación en el mapa del sitio o abrir la ruta en Google Maps.',
   },
   {
     question: '¿Hay consultorio de medicina estética en Pilar, Córdoba?',
@@ -55,11 +55,6 @@ export const FAQ_ENTRIES: FaqEntry[] = [
     answer:
       'La Dra. María Pía Gelso ejerce con matrícula profesional MP 47298 en la provincia de Córdoba, Argentina.',
   },
-  {
-    question: '¿Atiende en Nueva Córdoba?',
-    answer:
-      'Sí. La Dra. Gelso consulta en Nueva Córdoba además de Pilar y Río Segundo. Consultá disponibilidad por WhatsApp o Instagram.',
-  },
 ];
 
 const ASSET = (path: string) => `${SITE_URL}${path}`;
@@ -72,7 +67,7 @@ export function buildStructuredDataGraph() {
       name: SITE_NAME,
       alternateName: ['Dra. Gelso', 'Consultorio Dra. Gelso', DOCTOR_NAME],
       description:
-        'Clínica de medicina estética integral dirigida por la Dra. María Pía Gelso (MP 47298). Consultorios en Río Segundo (Mendoza 1120), Pilar y Nueva Córdoba, provincia de Córdoba, Argentina.',
+        'Clínica de medicina estética integral dirigida por la Dra. María Pía Gelso (MP 47298). Consultorios en Río Segundo (Mendoza 985) y Pilar, provincia de Córdoba, Argentina.',
       url: `${SITE_URL}/`,
       logo: { '@type': 'ImageObject', url: ASSET('/assets/gelso-logo.jpg') },
       image: [ASSET('/assets/gelso-slogan-reference.jpg'), ASSET('/assets/dra-gelso-hero.png')],
@@ -80,8 +75,7 @@ export function buildStructuredDataGraph() {
       priceRange: '$$',
       currenciesAccepted: 'ARS',
       areaServed: [
-        { '@type': 'City', name: 'Córdoba', containedInPlace: { '@type': 'Country', name: 'Argentina' } },
-        { '@type': 'City', name: 'Río Segundo' },
+        { '@type': 'City', name: 'Río Segundo', containedInPlace: { '@type': 'Country', name: 'Argentina' } },
         { '@type': 'City', name: 'Pilar' },
       ],
       medicalSpecialty: ['Medicina Estética', 'Medicina Capilar'],
@@ -105,7 +99,6 @@ export function buildStructuredDataGraph() {
       location: [
         { '@id': `${SITE_URL}/#consultorio-rio-segundo` },
         { '@id': `${SITE_URL}/#consultorio-pilar` },
-        { '@id': `${SITE_URL}/#consultorio-nueva-cordoba` },
       ],
       sameAs: [INSTAGRAM_URL],
       employee: { '@id': `${SITE_URL}/#doctor` },
@@ -129,7 +122,7 @@ export function buildStructuredDataGraph() {
       image: ASSET('/assets/gelso-logo.jpg'),
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Mendoza 1120',
+        streetAddress: 'Mendoza 985',
         addressLocality: 'Río Segundo',
         addressRegion: 'Córdoba',
         postalCode: 'X5960',
@@ -137,7 +130,7 @@ export function buildStructuredDataGraph() {
       },
       geo: { '@type': 'GeoCoordinates', latitude: -31.7069, longitude: -63.9088 },
       hasMap:
-        'https://www.google.com/maps/search/?api=1&query=Mendoza+1120,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina',
+        'https://www.google.com/maps/search/?api=1&query=Mendoza+985,+R%C3%ADo+Segundo,+C%C3%B3rdoba,+Argentina',
     },
     {
       '@type': ['MedicalClinic', 'LocalBusiness'],
@@ -156,24 +149,6 @@ export function buildStructuredDataGraph() {
       },
       geo: { '@type': 'GeoCoordinates', latitude: -31.675277, longitude: -63.871228 },
       hasMap: 'https://www.google.com/maps/search/?api=1&query=-31.675277,-63.871228',
-    },
-    {
-      '@type': ['MedicalClinic', 'LocalBusiness'],
-      '@id': `${SITE_URL}/#consultorio-nueva-cordoba`,
-      name: 'Gelso — Consultorio Nueva Córdoba',
-      parentOrganization: { '@id': `${SITE_URL}/#clinic` },
-      url: `${SITE_URL}/#ubicaciones`,
-      telephone: PHONE_E164,
-      image: ASSET('/assets/gelso-logo.jpg'),
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Córdoba Capital',
-        addressRegion: 'Nueva Córdoba, Córdoba',
-        postalCode: 'X5000',
-        addressCountry: 'AR',
-      },
-      geo: { '@type': 'GeoCoordinates', latitude: -31.4255, longitude: -64.1876 },
-      hasMap: 'https://www.google.com/maps/search/?api=1&query=Nueva+C%C3%B3rdoba,+C%C3%B3rdoba,+Argentina',
     },
     {
       '@type': ['Person', 'Physician'],

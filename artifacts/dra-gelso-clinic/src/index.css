@@ -361,9 +361,9 @@
 .hero-image {
   will-change: transform;
   object-fit: cover;
-  transform-origin: 22% 40%;
-  /* Encuadre hacia la izquierda del retrato para mantener visible el frasco */
-  object-position: 24% 38%;
+  transform-origin: 22% 15%;
+  /* Encuadre elevado en móviles para que las letras no tapen el rostro de la Dra */
+  object-position: 28% 5%;
 }
 
 @media (min-width: 640px) {
