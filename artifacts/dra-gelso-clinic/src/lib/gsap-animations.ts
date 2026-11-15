@@ -221,18 +221,12 @@ export function initScrollAnimations() {
   // Contact / locations
   ScrollTrigger.create({
     trigger: '#contacto',
-    start: 'top 78%',
+    start: 'top 85%',
     onEnter: () => {
-      gsap.from('.contact-intro', { opacity: 0, y: 36, duration: 0.9, ease: 'expo.out' });
-      gsap.from('.contact-intro-body', { opacity: 0, y: 20, duration: 0.75, ease: 'expo.out', delay: 0.15 });
-      gsap.from('.location-card', {
-        opacity: 0, y: 40, duration: 0.85,
-        stagger: 0.14, ease: 'expo.out', delay: 0.25,
-      });
-      gsap.from('.contact-info-col', {
-        opacity: 0, y: 20, duration: 0.6,
-        stagger: 0.12, ease: 'expo.out', delay: 0.55,
-      });
+      gsap.fromTo('.contact-intro', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', clearProps: 'all' });
+      gsap.fromTo('.contact-intro-body', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out', delay: 0.1, clearProps: 'all' });
+      gsap.fromTo('.location-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'expo.out', delay: 0.2, clearProps: 'all' });
+      gsap.fromTo('.contact-info-col', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'expo.out', delay: 0.35, clearProps: 'all' });
     },
     once: true,
   });

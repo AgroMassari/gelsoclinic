@@ -33,13 +33,13 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build clinic site
         working-directory: artifacts/dra-gelso-clinic
         env:
           PORT: '4173'
-          BASE_PATH: /
+          BASE_PATH: /gelsoclinic/
         run: pnpm run build
 
       - name: Upload Pages artifact

@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Route, Switch, Router as WouterRouter } from 'wouter';
-import { ArrowDown, ArrowUpRight, ChevronDown, Instagram, MapPin, Menu, ShieldCheck, Sparkles, UserCheck, X } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, ChevronDown, ExternalLink, Instagram, MapPin, Menu, ShieldCheck, Sparkles, UserCheck, X } from 'lucide-react';
 
 function WhatsAppIcon({ className = '' }: { className?: string }) {
   return (
@@ -307,50 +307,112 @@ function Pillars() {
 }
 
 /* ─── Treatment Data ─────────────────────────────── */
-const treatments = [
+interface ServiceItem {
+  title: string;
+  description: string;
+  note?: string;
+  price?: string;
+}
+
+interface TreatmentCategory {
+  number: string;
+  title: string;
+  priceSummary?: string;
+  services: ServiceItem[];
+}
+
+const treatments: TreatmentCategory[] = [
   {
-    number: '01', title: 'Evaluación y plan personalizado',
+    number: '01',
+    title: 'Consulta médica',
+    priceSummary: '$40.000',
     services: [
-      { title: 'Evaluación estética personalizada', description: 'Consulta médica en la que se analiza el rostro, la piel y las necesidades particulares de cada paciente para identificar qué tratamientos pueden ser adecuados y diseñar un plan personalizado.' },
-      { title: 'Evaluación + prueba de productos', description: 'Evaluación del estado y las necesidades de la piel, acompañada de la aplicación de productos seleccionados especialmente para el paciente, según lo que su piel necesita.', note: '¿Para qué sirve? Permite conocer cómo responde la piel a determinados productos y experimentar sus efectos antes de incorporarlos a la rutina de cuidado domiciliario.' },
+      {
+        title: 'Consulta',
+        description: 'Evaluación médica diagnóstica integral para analizar piel, facciones y diseñar un plan personalizado de tratamiento según tus objetivos.',
+        price: '$40.000',
+      },
     ],
   },
   {
-    number: '02', title: 'Toxina botulínica',
+    number: '02',
+    title: 'Toxina botulínica',
+    priceSummary: '$310.000',
     services: [
-      { title: 'Botox por zonas — Líneas de expresión', description: 'Aplicación de toxina botulínica para disminuir temporalmente la contracción de determinados músculos y suavizar las líneas de expresión.', note: 'Indicado principalmente para: frente, entrecejo y patas de gallo. ¿En qué consiste? Se realizan pequeñas inyecciones en puntos específicos de los músculos responsables de las líneas de expresión.' },
-      { title: 'Botox para sonrisa gingival', description: 'Tratamiento con toxina botulínica que ayuda a disminuir la elevación excesiva del labio superior al sonreír.', note: 'Indicado para: pacientes que muestran una cantidad elevada de encía al sonreír. ¿En qué consiste? Se aplican pequeñas cantidades de toxina botulínica en músculos específicos que participan en la elevación del labio superior.' },
-      { title: 'Botox para bruxismo', description: 'Tratamiento con toxina botulínica que disminuye la fuerza de contracción de los músculos involucrados en la masticación.', note: 'Indicado principalmente para: pacientes con hiperactividad o aumento del volumen de los músculos maseteros asociado al bruxismo. ¿En qué consiste? Se realizan pequeñas inyecciones de toxina botulínica en los músculos maseteros, luego de una evaluación individual.' },
-      { title: 'Strapbox', description: 'Tratamiento con toxina botulínica destinado a disminuir la fuerza de contracción de determinados músculos de la zona del cuello.', note: '¿Para qué sirve? Ayuda a relajar la tensión muscular de esta zona y puede mejorar visualmente el aspecto del cuello y la transición entre cuello y mandíbula. ¿En qué consiste? Se realizan aplicaciones estratégicas de toxina botulínica en puntos específicos, seleccionados de acuerdo con la anatomía y los movimientos musculares de cada paciente.' },
+      {
+        title: 'Botox',
+        description: 'Aplicación médica de toxina botulínica para modular la contracción muscular, suavizar líneas de expresión en frente, entrecejo y patas de gallo, conservando tu gestualidad y frescura natural.',
+        note: 'Indicado para: líneas dinámicas del tercio superior y prevención de arrugas profundas.',
+        price: '$310.000',
+      },
     ],
   },
   {
-    number: '03', title: 'Calidad y renovación de la piel',
+    number: '03',
+    title: 'Armonización facial',
+    priceSummary: 'Desde $280.000',
     services: [
-      { title: 'Dermaplaning', description: 'Exfoliación mecánica superficial que elimina células superficiales de la piel y el vello facial fino.', note: 'Indicado para: mejorar suavidad, luminosidad y textura de la piel. ¿En qué consiste? Se utiliza un instrumento estéril específico para realizar una exfoliación superficial y controlada.' },
-      { title: 'Microneedling / Dermapen con activos seleccionados', description: 'Tratamiento de bioestimulación mediante microperforaciones controladas que favorecen los procesos naturales de renovación de la piel y permiten trabajar con activos seleccionados.', note: 'Indicado para: mejorar luminosidad, hidratación, textura y aspecto general de la piel. Puede utilizarse dentro de protocolos de BB Glow según valoración. ¿En qué consiste? Se realizan microcanales controlados mediante Dermapen y se incorporan activos seleccionados según las necesidades de la piel.' },
-      { title: 'Microneedling para cicatrices, estrías y manchas', description: 'Protocolo de microneedling diseñado para trabajar alteraciones de textura y determinadas alteraciones pigmentarias.', note: 'Indicado para: determinadas cicatrices, estrías y manchas, según su tipo y características. ¿En qué consiste? Se realizan microperforaciones controladas que estimulan los procesos de reparación y remodelación de la piel. El protocolo se adapta a cada caso.' },
-      { title: 'Microneedling + PRP', description: 'Combinación de microneedling con plasma rico en plaquetas (PRP), obtenido a partir de una muestra de sangre del propio paciente.', note: 'Indicado para: protocolos de bioestimulación y mejora de la calidad y textura de la piel. ¿En qué consiste? Se obtiene una pequeña muestra de sangre, se procesa para obtener el PRP y se combina con el tratamiento de microneedling.' },
-      { title: 'Mesoterapia con ácido hialurónico', description: 'Tratamiento orientado a mejorar la hidratación y revitalización de la piel mediante pequeñas aplicaciones de ácido hialurónico.', note: 'Indicado para: piel deshidratada, opaca o con pérdida de luminosidad y calidad. ¿En qué consiste? Se realizan múltiples microinyecciones, utilizando un protocolo adaptado a la zona y a las necesidades de cada paciente.' },
-      { title: 'Skinbooster', description: 'Tratamiento inyectable diseñado para mejorar la hidratación, elasticidad y calidad general de la piel mediante ácido hialurónico específico para este tipo de tratamiento.', note: 'Indicado para: piel deshidratada, opaca, con pérdida de elasticidad o líneas superficiales. ¿En qué consiste? Se realizan pequeñas aplicaciones de producto en puntos determinados para distribuirlo de manera uniforme en la zona a tratar.' },
+      {
+        title: 'Relleno de labios',
+        description: 'Aplicación médica de ácido hialurónico para hidratar, perfilar contorno, corregir asimetrías y aportar volumen sutil respetando la proporción anatómica de tus labios.',
+        price: '$300.000',
+      },
+      {
+        title: 'Rino (Rinomodelación)',
+        description: 'Corrección no quirúrgica del perfil nasal con ácido hialurónico de alta densidad para rectificar el dorso, disimular la giba y elevar la punta.',
+        note: 'Resultados inmediatos en consultorio sin quirófano ni postoperatorio.',
+        price: '$280.000',
+      },
+      {
+        title: 'Juvederm Voluma o Volux',
+        description: 'Ácido hialurónico estructural de alta gama para proyección de mentón, definición del ángulo mandibular y reposición de pómulos.',
+        note: 'Máxima durabilidad, soporte y definición anatómica.',
+        price: '$410.000',
+      },
     ],
   },
   {
-    number: '04', title: 'Armonización facial',
+    number: '04',
+    title: 'Calidad y renovación de la piel',
+    priceSummary: 'Desde $50.000',
     services: [
-      { title: 'Relleno de labios con ácido hialurónico', description: 'Tratamiento destinado a mejorar la hidratación, definición, simetría y/o volumen de los labios.', note: 'Indicado para: pacientes que desean definir el contorno, mejorar proporciones, aportar volumen o conseguir labios más hidratados. ¿En qué consiste? Se aplica ácido hialurónico mediante técnicas de inyección seleccionadas según la anatomía y el objetivo de cada paciente.' },
+      {
+        title: 'Dermaplaning',
+        description: 'Exfoliación física superficial y controlada que retira células muertas superficiales y el vello facial fino, aportando suavidad y luminosidad al instante.',
+        price: '$50.000',
+      },
+      {
+        title: 'Meso-dermapen',
+        description: 'Bioestimulación cutánea con microagujas (Dermapen) e infusión de principios activos seleccionados para poros dilatados, textura e hidratación.',
+        price: '$80.000',
+      },
+      {
+        title: 'Peeling',
+        description: 'Exfoliación química médica con complejos de ácidos dermatológicos para renovar capas celulares, atenuar pigmentaciones y unificar el tono.',
+        price: '$80.000',
+      },
+      {
+        title: 'PRP (Plasma Rico en Plaquetas)',
+        description: 'Bioestimulación autóloga con factores de crecimiento extraídos de la propia sangre del paciente para regeneración tisular, firmeza y luminosidad.',
+        price: '$60.000',
+      },
+      {
+        title: 'Skinbooster',
+        description: 'Microinyecciones de ácido hialurónico diseñadas para nutrir e hidratar la piel desde la dermis profunda, devolviendo turgencia y elasticidad sin volumen artificial.',
+        price: '$250.000',
+      },
     ],
   },
   {
-    number: '05', title: 'Medicina capilar',
+    number: '05',
+    title: 'Medicina capilar',
+    priceSummary: '$60.000',
     services: [
-      { title: 'PRP capilar', description: 'Tratamiento de bioestimulación capilar que utiliza plasma rico en plaquetas obtenido de la propia sangre del paciente.', note: 'Indicado para: determinados tipos de caída del cabello y para protocolos destinados a mejorar la calidad y el grosor del cabello. ¿En qué consiste? Se obtiene una muestra de sangre, se procesa para obtener el PRP y posteriormente se realizan microinyecciones en el cuero cabelludo.' },
-    ],
-  },
-  {
-    number: '06', title: 'Tratamientos corporales',
-    services: [
-      { title: 'Mesoterapia corporal', description: 'Tratamiento basado en la aplicación localizada de activos mediante pequeñas microinyecciones.', note: 'Indicado para: determinados protocolos destinados a mejorar la apariencia y calidad de la piel corporal, de acuerdo con las necesidades de cada paciente. ¿En qué consiste? Se aplican pequeñas cantidades de activos mediante microinyecciones superficiales en la zona seleccionada.' },
+      {
+        title: 'Tratamiento capilar',
+        description: 'Bioestimulación folicular con plasma rico en plaquetas (PRP) autólogo para fortalecer la raíz, frenar la caída y potenciar el grosor del cabello.',
+        price: '$60.000',
+      },
     ],
   },
 ];
@@ -511,8 +573,14 @@ function TreatmentAccordion() {
                 <span className="font-display text-lg text-[#cdb38b]">{treatment.number}</span>
                 <span className="min-w-0 flex-1">
                   <span className="block font-display text-[1.25rem] leading-[.95] text-[#f5eee4] sm:text-[1.5rem]">{treatment.title}</span>
-                  <span className="mt-2 block text-[.56rem] font-bold uppercase tracking-[.16em] text-[#9e9185]">
-                    {treatment.services.length} {treatment.services.length === 1 ? 'protocolo' : 'protocolos'}
+                  <span className="mt-2 flex flex-wrap items-center gap-2 text-[.56rem] font-bold uppercase tracking-[.16em] text-[#9e9185]">
+                    <span>{treatment.services.length} {treatment.services.length === 1 ? 'protocolo' : 'protocolos'}</span>
+                    {treatment.priceSummary && (
+                      <>
+                        <span className="text-[#cdb38b]/40">•</span>
+                        <span className="text-[#cdb38b]">{treatment.priceSummary}</span>
+                      </>
+                    )}
                   </span>
                 </span>
                 <ChevronDown className={`h-4 w-4 shrink-0 text-[#cdb38b] transition-transform duration-300 ${expanded ? 'rotate-180' : 'group-hover:translate-y-1'}`} />
@@ -526,8 +594,15 @@ function TreatmentAccordion() {
                       <article key={service.title} className="service-detail border-b border-[#cdb38b]/10 pb-4 last:border-0 last:pb-0">
                         <div className="flex gap-2.5">
                           <span className="pt-0.5 text-[.58rem] font-bold tracking-[.16em] text-[#cdb38b]">0{serviceIndex + 1}</span>
-                          <div>
-                            <h4 className="font-display text-[1.2rem] leading-snug text-[#f5eee4]">{service.title}</h4>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-baseline justify-between gap-2">
+                              <h4 className="font-display text-[1.2rem] leading-snug text-[#f5eee4]">{service.title}</h4>
+                              {service.price && (
+                                <span className="rounded-full border border-[#cdb38b]/40 bg-[#cdb38b]/15 px-2.5 py-0.5 font-sans text-[.66rem] font-bold tracking-wider text-[#f0d9ae]">
+                                  {service.price}
+                                </span>
+                              )}
+                            </div>
                             <p className="mt-1.5 text-[.74rem] leading-relaxed text-[#c7b9ac]">{service.description}</p>
                             {service.note && <p className="mt-1.5 text-[.68rem] leading-relaxed text-[#998d82]">{service.note}</p>}
                           </div>
@@ -542,7 +617,7 @@ function TreatmentAccordion() {
                     className="mt-5 inline-flex w-full items-center justify-center gap-2 border border-[#cdb38b]/60 bg-[#cdb38b]/10 py-3 text-center text-[.62rem] font-bold uppercase tracking-[.16em] text-[#cdb38b] transition hover:bg-[#cdb38b] hover:text-[#171411]"
                     data-testid={`link-treatment-mobile-appointment-${treatment.number}`}
                   >
-                    Consultar por este tratamiento <ArrowUpRight className="h-3.5 w-3.5" />
+                    Consultar o solicitar turno <ArrowUpRight className="h-3.5 w-3.5" />
                   </a>
                 </div>
               )}
@@ -557,6 +632,11 @@ function TreatmentAccordion() {
           <div>
             <span className="eyebrow">Área de tratamiento</span>
             <h3 className="mt-3 max-w-[430px] font-display text-[2rem] leading-[.93] text-[#f5eee4] sm:text-[2.6rem]">{activeTreatment.title}</h3>
+            {activeTreatment.priceSummary && (
+              <span className="mt-2 inline-block text-[.68rem] font-bold uppercase tracking-[.18em] text-[#cdb38b]">
+                Valores de referencia: {activeTreatment.priceSummary}
+              </span>
+            )}
           </div>
           <span className="font-display text-4xl text-[#cdb38b]/50">{activeTreatment.number}</span>
         </div>
@@ -565,8 +645,15 @@ function TreatmentAccordion() {
             <article key={service.title} className="service-detail">
               <div className="flex gap-3">
                 <span className="pt-1 text-[.58rem] font-bold tracking-[.16em] text-[#cdb38b]">0{serviceIndex + 1}</span>
-                <div>
-                  <h4 className="font-display text-[1.35rem] leading-tight text-[#f5eee4] sm:text-[1.55rem]">{service.title}</h4>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h4 className="font-display text-[1.35rem] leading-tight text-[#f5eee4] sm:text-[1.55rem]">{service.title}</h4>
+                    {service.price && (
+                      <span className="shrink-0 rounded-full border border-[#cdb38b]/40 bg-[#cdb38b]/15 px-3 py-1 font-sans text-xs font-bold tracking-wider text-[#f0d9ae] shadow-xs">
+                        {service.price}
+                      </span>
+                    )}
+                  </div>
                   <p className="mt-2 text-[.76rem] leading-6 text-[#c7b9ac]">{service.description}</p>
                   {service.note && <p className="mt-2 text-[.7rem] leading-6 text-[#998d82]">{service.note}</p>}
                 </div>
@@ -574,11 +661,16 @@ function TreatmentAccordion() {
             </article>
           ))}
         </div>
-        <a href={appointmentUrl} target="_blank" rel="noreferrer"
-          className="mt-8 inline-flex items-center gap-3 border-b border-[#cdb38b] pb-2 text-[.64rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:text-[#f0d9ae]"
-          data-testid="link-treatment-appointment">
-          Consultar por este protocolo <ArrowUpRight className="h-3.5 w-3.5" />
-        </a>
+        <div className="mt-8 flex items-center justify-between border-t border-[#cdb38b]/15 pt-5">
+          <a href={appointmentUrl} target="_blank" rel="noreferrer"
+            className="inline-flex items-center gap-3 border-b border-[#cdb38b] pb-2 text-[.64rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] transition hover:text-[#f0d9ae]"
+            data-testid="link-treatment-appointment">
+            Consultar por este protocolo <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+          <span className="text-[.62rem] text-[#998d82]">
+            * Consulta previa para determinar el plan clínico ideal
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -600,7 +692,7 @@ function Treatments() {
           </div>
           <div className="treatments-subtitle max-w-[570px] lg:pb-2">
             <p className="text-[.86rem] leading-7 text-[#b9aca1]">
-              Cada protocolo se elige con criterio médico y se adapta a lo que tu piel, tu rostro y tu historia necesitan. Conocé las áreas de trabajo y encontrá el punto de partida para tu consulta.
+              Cada protocolo se elige con criterio médico y se adapta a lo que tu piel, tu rostro y tu historia necesitan. Conocé las áreas de trabajo, valores de referencia y encontrá el punto de partida para tu consulta.
             </p>
             <div className="mt-6 flex items-center gap-4 text-[.58rem] font-bold uppercase tracking-[.2em] text-[#cdb38b]">
               <span className="h-px w-10 bg-gradient-to-r from-[#cdb38b] to-transparent" />
@@ -609,7 +701,23 @@ function Treatments() {
           </div>
         </div>
         <TreatmentAccordion />
-        <div className="mt-14 grid gap-5 border-t border-[#cdb38b]/15 pt-5 sm:grid-cols-[.9fr_1.1fr] sm:items-center">
+
+        <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-[#cdb38b]/15 pt-5 text-[.72rem] text-[#b9aca1]">
+          <p className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#cdb38b]" />
+            Valores de referencia expresados en pesos argentinos (ARS). Medios de pago (efectivo, transferencia y tarjetas) a convenir en consulta.
+          </p>
+          <a
+            href={appointmentUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[.62rem] font-bold uppercase tracking-[.18em] text-[#cdb38b] hover:underline"
+          >
+            Consultar promociones y turnos disponibles →
+          </a>
+        </div>
+
+        <div className="mt-10 grid gap-5 border-t border-[#cdb38b]/15 pt-5 sm:grid-cols-[.9fr_1.1fr] sm:items-center">
           <span className="text-[.6rem] font-bold uppercase tracking-[.2em] text-[#8a7060]">Una estética que se ve y se siente tuya</span>
           <div className="relative overflow-hidden">
             <img src={clinicReferencePath} alt="Interior del consultorio Gelso — medicina estética Córdoba"

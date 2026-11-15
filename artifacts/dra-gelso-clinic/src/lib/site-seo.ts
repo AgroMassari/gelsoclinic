@@ -43,7 +43,7 @@ export const FAQ_ENTRIES: FaqEntry[] = [
   {
     question: '¿Qué tratamientos ofrece la Dra. Gelso?',
     answer:
-      'Botox (toxina botulínica), microneedling, dermaplaning, relleno de labios con ácido hialurónico, PRP capilar, skinbooster, mesoterapia facial y corporal, entre otros protocolos de medicina estética integral.',
+      'Consulta médica, Botox, Relleno de labios, Rino (Rinomodelación), Juvederm Voluma o Volux, Dermaplaning, Meso-dermapen, Peeling, PRP (Plasma Rico en Plaquetas), Skinbooster y Tratamiento capilar.',
   },
   {
     question: '¿Los resultados son naturales?',
@@ -88,13 +88,17 @@ export function buildStructuredDataGraph() {
         url: WHATSAPP_URL,
       },
       availableService: [
-        { '@type': 'MedicalProcedure', name: 'Botox — Toxina Botulínica' },
-        { '@type': 'MedicalProcedure', name: 'Microneedling / Dermapen' },
-        { '@type': 'MedicalProcedure', name: 'Relleno de labios con ácido hialurónico' },
-        { '@type': 'MedicalProcedure', name: 'PRP capilar' },
-        { '@type': 'MedicalProcedure', name: 'Skinbooster' },
-        { '@type': 'MedicalProcedure', name: 'Mesoterapia facial' },
+        { '@type': 'MedicalProcedure', name: 'Consulta médica' },
+        { '@type': 'MedicalProcedure', name: 'Botox' },
+        { '@type': 'MedicalProcedure', name: 'Relleno de labios' },
+        { '@type': 'MedicalProcedure', name: 'Rino (Rinomodelación)' },
+        { '@type': 'MedicalProcedure', name: 'Juvederm Voluma o Volux' },
         { '@type': 'MedicalProcedure', name: 'Dermaplaning' },
+        { '@type': 'MedicalProcedure', name: 'Meso-dermapen' },
+        { '@type': 'MedicalProcedure', name: 'Peeling' },
+        { '@type': 'MedicalProcedure', name: 'PRP (Plasma Rico en Plaquetas)' },
+        { '@type': 'MedicalProcedure', name: 'Skinbooster' },
+        { '@type': 'MedicalProcedure', name: 'Tratamiento capilar' },
       ],
       location: [
         { '@id': `${SITE_URL}/#consultorio-rio-segundo` },
